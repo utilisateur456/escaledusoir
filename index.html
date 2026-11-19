@@ -164,7 +164,7 @@
   .top-actions { position: fixed; top: 16px; right: 16px; z-index: 20; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
   .top-actions .top-contact { position: static; text-align: center; }
   .top-onair { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
-  .top-onair .rec { width: 8px; height: 8px; border-radius: 50%; background: #e8574a; box-shadow: 0 0 8px #e8574a; animation: rec 1.6s ease-in-out infinite; }
+  .rec { width: 8px; height: 8px; border-radius: 50%; background: #e8574a; box-shadow: 0 0 8px #e8574a; animation: rec 1.6s ease-in-out infinite; }
   @keyframes rec { 50% { opacity: .35; } }
   .ecouter { margin-top: 34px; display: inline-flex; align-items: center; gap: 10px; }
   .ecouter svg { width: 18px; height: 18px; }
@@ -204,7 +204,6 @@
 <div class="ciel" id="ciel"></div>
 <div class="top-actions">
   <button class="top-contact" id="ouvrir-contact" type="button">Contact</button>
-  <button class="top-contact top-onair" id="ouvrir-radio" type="button"><span class="rec"></span>On Air</button>
 </div>
 
 <div class="wrap">
@@ -220,7 +219,7 @@
     <h1>L'Escale du Soir</h1>
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
 
-    <button class="bouton ecouter" id="ecouter" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Écouter en direct</button>
+    <button class="bouton ecouter" id="ecouter" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Écouter en direct<span class="rec" aria-hidden="true"></span></button>
   </header>
 
   <section>
@@ -350,7 +349,6 @@
   // Fenêtre radio : elle reste chargée, le son continue quand on la ferme
   const ouvrirRadio = () => document.body.classList.add("radio-ouverte");
   const fermerRadio = () => document.body.classList.remove("radio-ouverte");
-  document.getElementById("ouvrir-radio").addEventListener("click", ouvrirRadio);
   document.getElementById("ecouter").addEventListener("click", ouvrirRadio);
   document.getElementById("fermer-radio").addEventListener("click", fermerRadio);
   document.getElementById("radio-voile").addEventListener("click", fermerRadio);
