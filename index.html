@@ -161,6 +161,24 @@
   }
   .top-contact:hover { background: var(--phare); color: var(--nuit); }
   .top-contact { cursor: pointer; }
+  .top-actions { position: fixed; top: 16px; right: 16px; z-index: 20; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .top-actions .top-contact { position: static; text-align: center; }
+  .top-onair { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .top-onair .rec { width: 8px; height: 8px; border-radius: 50%; background: #e8574a; box-shadow: 0 0 8px #e8574a; animation: rec 1.6s ease-in-out infinite; }
+  @keyframes rec { 50% { opacity: .35; } }
+  .ecouter { margin-top: 34px; display: inline-flex; align-items: center; gap: 10px; }
+  .ecouter svg { width: 18px; height: 18px; }
+  .radio-voile { position: fixed; inset: 0; z-index: 40; background: rgba(5,8,16,.72); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .radio-pop {
+    position: fixed; z-index: 41; left: 50%; top: 50%; width: min(380px, 92vw);
+    transform: translate(-50%, -46%); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+    border: 1px solid rgba(242,180,90,.35); border-radius: 24px; background: linear-gradient(180deg, #151d33, #0f1526);
+    padding: 58px 16px 16px; box-shadow: 0 40px 100px rgba(0,0,0,.6);
+  }
+  .radio-pop .titre-pop { position: absolute; top: 24px; left: 22px; font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--phare); }
+  .radio-pop .cstrEmbed { border-radius: 14px; overflow: hidden; }
+  body.radio-ouverte .radio-voile, body.radio-ouverte .radio-pop { opacity: 1; pointer-events: auto; }
+  body.radio-ouverte .radio-pop { transform: translate(-50%, -50%); }
   dialog.contact {
     width: min(560px, 92vw); max-height: 90vh; margin: auto;
     border: 1px solid rgba(242,180,90,.35); border-radius: 24px;
@@ -184,7 +202,10 @@
 </head>
 <body>
 <div class="ciel" id="ciel"></div>
-<button class="top-contact" id="ouvrir-contact" type="button">Contact</button>
+<div class="top-actions">
+  <button class="top-contact" id="ouvrir-contact" type="button">Contact</button>
+  <button class="top-contact top-onair" id="ouvrir-radio" type="button"><span class="rec"></span>On Air</button>
+</div>
 
 <div class="wrap">
   <header>
@@ -199,11 +220,7 @@
     <h1>L'Escale du Soir</h1>
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
 
-    <div class="lecteur-caster">
-      <div data-type="newStreamPlayer" data-publicToken="2859a804-483b-4b11-871f-5a02c5b6ea99" data-theme="dark" data-color="f2b45a" data-channelId="" data-rendered="false" class="cstrEmbed">
-        <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
-      </div>
-    </div>
+    <button class="bouton ecouter" id="ecouter" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Écouter en direct</button>
   </header>
 
   <section>
@@ -254,6 +271,15 @@
       <p class="retour" id="retour"></p>
     </form>
   </dialog>
+</div>
+
+<div class="radio-voile" id="radio-voile"></div>
+<div class="radio-pop" id="radio-pop" role="dialog" aria-label="Écouter L'Escale du Soir">
+  <span class="titre-pop">En direct</span>
+  <button class="fermer" id="fermer-radio" type="button" aria-label="Fermer">&times;</button>
+  <div data-type="newStreamPlayer" data-publicToken="2859a804-483b-4b11-871f-5a02c5b6ea99" data-theme="dark" data-color="f2b45a" data-channelId="" data-rendered="false" class="cstrEmbed">
+        <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
+      </div>
 </div>
 
 <footer>
@@ -320,6 +346,15 @@
       document.getElementById("note").textContent = "Les lignes ouvrent bientôt.";
     });
   }
+
+  // Fenêtre radio : elle reste chargée, le son continue quand on la ferme
+  const ouvrirRadio = () => document.body.classList.add("radio-ouverte");
+  const fermerRadio = () => document.body.classList.remove("radio-ouverte");
+  document.getElementById("ouvrir-radio").addEventListener("click", ouvrirRadio);
+  document.getElementById("ecouter").addEventListener("click", ouvrirRadio);
+  document.getElementById("fermer-radio").addEventListener("click", fermerRadio);
+  document.getElementById("radio-voile").addEventListener("click", fermerRadio);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") fermerRadio(); });
 
   // Fenêtre de contact
   const dlg = document.getElementById("contact");
