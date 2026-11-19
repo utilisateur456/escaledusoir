@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Escale du Soir</title>
+<meta name="description" content="L'Escale du Soir, la radio. De la musique en continu et une libre antenne le soir pour parler de ce qui coince au quotidien.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --nuit: #0d1220;
+    --nuit-2: #151c30;
+    --carte: rgba(255,255,255,0.04);
+    --bord: rgba(255,255,255,0.09);
+    --texte: #ece7dd;
+    --doux: #a9a6a0;
+    --phare: #f2b45a;
+    --phare-fonce: #d9963a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--nuit);
+    color: var(--texte);
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .ciel {
+    position: fixed; inset: 0; z-index: -1;
+    background:
+      radial-gradient(ellipse at 50% 120%, rgba(242,180,90,0.18), transparent 60%),
+      linear-gradient(180deg, #0a0f1c 0%, var(--nuit) 50%, var(--nuit-2) 100%);
+  }
+  .ciel span {
+    position: absolute; width: 2px; height: 2px; border-radius: 50%;
+    background: #fff; opacity: .5; animation: scintille 4s infinite ease-in-out;
+  }
+  @keyframes scintille { 50% { opacity: .1; } }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  header { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 0; }
+  .sur-titre { letter-spacing: .3em; text-transform: uppercase; font-size: .78rem; color: var(--phare); margin-bottom: 18px; }
+  h1 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(2.8rem, 9vw, 5.6rem); line-height: 1.02; }
+  h1 em { font-weight: 400; color: var(--phare); }
+  .accroche { margin-top: 22px; font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--doux); max-width: 560px; }
+
+  .lecteur {
+    margin-top: 44px; width: 100%; max-width: 440px;
+    background: var(--carte); border: 1px solid var(--bord); border-radius: 22px;
+    padding: 22px; display: flex; align-items: center; gap: 18px;
+    backdrop-filter: blur(8px);
+  }
+  .play {
+    flex: none; width: 64px; height: 64px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--phare); color: var(--nuit); display: grid; place-items: center;
+    transition: transform .15s, background .15s;
+  }
+  .play:hover { transform: scale(1.06); background: var(--phare-fonce); }
+  .play svg { width: 26px; height: 26px; }
+  .infos { text-align: left; }
+  .direct { display: flex; align-items: center; gap: 8px; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--doux); }
+  .point { width: 8px; height: 8px; border-radius: 50%; background: #666; }
+  .actif .point { background: #e8574a; box-shadow: 0 0 10px #e8574a; }
+  .statut { font-weight: 500; margin-top: 4px; }
+
+  section { padding: 90px 0; }
+  h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.15; margin-bottom: 20px; }
+  .intro { font-size: 1.1rem; color: var(--doux); max-width: 640px; }
+
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 40px; }
+  .carte { background: var(--carte); border: 1px solid var(--bord); border-radius: 18px; padding: 26px; }
+  .carte .quand { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--phare); }
+  .carte h3 { font-family: "Fraunces", serif; font-size: 1.4rem; margin: 8px 0 10px; }
+  .carte p { color: var(--doux); }
+
+  .appel { text-align: center; }
+  .appel .intro { margin: 0 auto; }
+  .bouton {
+    display: inline-block; margin-top: 30px; padding: 16px 34px; border-radius: 999px;
+    background: transparent; color: var(--phare); border: 1.5px solid var(--phare);
+    font: 600 1rem "Inter", sans-serif; cursor: pointer; text-decoration: none;
+    transition: background .15s, color .15s;
+  }
+  .bouton:hover { background: var(--phare); color: var(--nuit); }
+  .note { margin-top: 14px; font-size: .9rem; color: var(--doux); min-height: 1.4em; }
+
+  footer { border-top: 1px solid var(--bord); padding: 30px 0 40px; text-align: center; color: var(--doux); font-size: .85rem; }
+</style>
+</head>
+<body>
+<div class="ciel" id="ciel"></div>
+
+<div class="wrap">
+  <header>
+    <p class="sur-titre">la radio</p>
+    <h1>L'Escale<br><em>du Soir</em></h1>
+    <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
+
+    <div class="lecteur" id="lecteur">
+      <button class="play" id="play" aria-label="Écouter la radio">
+        <svg id="icone" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="infos">
+        <div class="direct"><span class="point"></span>En direct</div>
+        <div class="statut" id="statut">L'antenne s'allume bientôt.</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Un port pour les fins de journée.</h2>
+    <p class="intro">Ici, on pose ses valises. De la bonne musique en continu, et une libre antenne où vous appelez pour parler de ce qui coince au quotidien. Le voisin bruyant, le chef impossible, le moral en berne. Pas de jugement, pas de chichis. Juste une voix à l'autre bout du fil.</p>
+  </section>
+
+  <section>
+    <h2>Au programme</h2>
+    <div class="grille">
+      <div class="carte">
+        <span class="quand">En continu</span>
+        <h3>La playlist</h3>
+        <p>Des titres choisis à la main. Pas par un algorithme fatigué.</p>
+      </div>
+      <div class="carte">
+        <span class="quand">Le soir</span>
+        <h3>La libre antenne</h3>
+        <p>Vous appelez, on écoute, on en parle. À plusieurs, c'est tout de suite plus léger.</p>
+      </div>
+      <div class="carte">
+        <span class="quand">Horaires</span>
+        <h3>Bientôt dévoilés</h3>
+        <p>On règle encore les projecteurs du phare. Revenez vite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="appel">
+    <h2>Quelque chose sur le cœur ?</h2>
+    <p class="intro">Pendant la libre antenne, appelez directement depuis votre navigateur. Un micro, un peu de courage, et c'est parti.</p>
+    <a class="bouton" id="appeler" href="#">Appeler l'antenne</a>
+    <p class="note" id="note"></p>
+  </section>
+</div>
+
+<footer>
+  © <span id="annee"></span> L'Escale du Soir · escaledusoir.ch
+</footer>
+
+<script>
+  /* ===== À COMPLÉTER PLUS TARD ===== */
+  const STREAM_URL = ""; // adresse du flux radio (Icecast, Radio.co...)
+  const CALL_URL   = ""; // lien vMix Call pour les auditeurs
+  /* ================================= */
+
+  // Ciel étoilé
+  const ciel = document.getElementById("ciel");
+  for (let i = 0; i < 90; i++) {
+    const s = document.createElement("span");
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = Math.random() * 75 + "%";
+    s.style.animationDelay = Math.random() * 4 + "s";
+    ciel.appendChild(s);
+  }
+
+  document.getElementById("annee").textContent = new Date().getFullYear();
+
+  // Lecteur
+  const audio = new Audio();
+  const play = document.getElementById("play");
+  const statut = document.getElementById("statut");
+  const lecteur = document.getElementById("lecteur");
+  const icone = document.getElementById("icone");
+  const PLAY = '<path d="M8 5v14l11-7z"/>';
+  const PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+
+  play.addEventListener("click", () => {
+    if (!STREAM_URL) {
+      statut.textContent = "Pas encore à l'antenne. Patience, on arrive.";
+      return;
+    }
+    if (audio.paused) {
+      audio.src = STREAM_URL;
+      audio.play().then(() => {
+        icone.innerHTML = PAUSE;
+        lecteur.classList.add("actif");
+        statut.textContent = "Vous êtes à l'escale.";
+      }).catch(() => { statut.textContent = "Le flux ne répond pas. Réessayez dans un instant."; });
+    } else {
+      audio.pause();
+      audio.removeAttribute("src");
+      icone.innerHTML = PLAY;
+      lecteur.classList.remove("actif");
+      statut.textContent = "En pause. On vous attend.";
+    }
+  });
+
+  // Bouton d'appel
+  const appeler = document.getElementById("appeler");
+  if (CALL_URL) {
+    appeler.href = CALL_URL;
+    appeler.target = "_blank";
+    appeler.rel = "noopener";
+  } else {
+    appeler.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("note").textContent = "Les lignes ouvrent bientôt.";
+    });
+  }
+</script>
+</body>
+</html>
