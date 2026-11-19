@@ -7,7 +7,7 @@
 <meta name="description" content="L'Escale du Soir, la radio. De la musique en continu et une libre antenne le soir pour parler de ce qui coince au quotidien.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --nuit: #0d1220;
@@ -46,9 +46,21 @@
 
   header { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 0; }
   .sur-titre { letter-spacing: .3em; text-transform: uppercase; font-size: .78rem; color: var(--phare); margin-bottom: 18px; }
-  h1 { font-family: var(--titre-police); font-weight: 700; font-size: clamp(2.8rem, 9vw, 5.6rem); line-height: 1.04; letter-spacing: -0.035em; }
-  h1 em { font-style: normal; font-weight: 700; color: var(--phare); }
-  .accroche { margin-top: 22px; font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--doux); max-width: 560px; }
+  h1 {
+    font-family: "Cinzel", "Trajan Pro", Georgia, serif; font-weight: 600;
+    font-size: clamp(2.3rem, 7.5vw, 4.6rem); line-height: 1.08; letter-spacing: .03em;
+    background:
+      repeating-linear-gradient(100deg, rgba(255,255,255,.10) 0 1px, rgba(0,0,0,.08) 1px 3px),
+      linear-gradient(180deg, #fff3d1 0%, #f6cf86 22%, #d99a45 46%, #8f5a1c 56%, #e9b766 72%, #fff0c4 88%, #b47a30 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: #f2b45a;
+    filter: drop-shadow(0 2px 0 rgba(60,35,8,.55)) drop-shadow(0 10px 24px rgba(242,180,90,.18));
+  }
+  h1 em { font-style: normal; }
+  .logo-anim { width: min(420px, 82vw); aspect-ratio: 1/1; border-radius: 26px; overflow: hidden; margin-bottom: 34px; box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 0 0 1px var(--bord); background: #0d1220; }
+  .logo-anim video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .accroche { margin-top: 22px; font-size: clamp(.95rem, 2.1vw, 1.3rem); color: var(--doux); white-space: nowrap; }
+  @media (max-width: 640px) { .accroche { white-space: normal; max-width: 340px; } }
 
   .lecteur {
     margin-top: 44px; width: 100%; max-width: 440px;
@@ -90,14 +102,61 @@
   .bouton:hover { background: var(--phare); color: var(--nuit); }
   .note { margin-top: 14px; font-size: .9rem; color: var(--doux); min-height: 1.4em; }
 
+  .contact form { margin-top: 30px; display: grid; gap: 14px; max-width: 620px; }
+  .contact .ligne { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .contact label { display: block; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--doux); margin-bottom: 6px; }
+  .contact input, .contact textarea {
+    width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--bord);
+    background: var(--carte); color: var(--texte); font: 400 1rem var(--texte-police);
+  }
+  .contact textarea { min-height: 140px; resize: vertical; }
+  .contact input:focus, .contact textarea:focus { outline: none; border-color: var(--phare); }
+  .contact .bouton { justify-self: start; margin-top: 6px; }
+  .contact .retour { min-height: 1.4em; color: var(--doux); }
+  @media (max-width: 600px) { .contact .ligne { grid-template-columns: 1fr; } }
+
+  .top-contact {
+    position: fixed; top: 16px; right: 16px; z-index: 20;
+    padding: 10px 22px; border-radius: 999px; text-decoration: none;
+    background: rgba(13,18,32,.65); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(242,180,90,.55); color: var(--phare);
+    font: 600 .92rem var(--texte-police); letter-spacing: .02em;
+    transition: background .15s, color .15s;
+  }
+  .top-contact:hover { background: var(--phare); color: var(--nuit); }
+  .top-contact { cursor: pointer; }
+  dialog.contact {
+    width: min(560px, 92vw); max-height: 90vh; margin: auto;
+    border: 1px solid rgba(242,180,90,.35); border-radius: 24px;
+    background: linear-gradient(180deg, #151d33, #0f1526); color: var(--texte);
+    padding: 34px 26px 26px; box-shadow: 0 40px 100px rgba(0,0,0,.6);
+  }
+  dialog.contact::backdrop { background: rgba(5,8,16,.72); backdrop-filter: blur(4px); }
+  dialog.contact h2 { font-size: 1.9rem; margin-bottom: 8px; }
+  dialog.contact .intro { font-size: 1rem; }
+  dialog.contact form { margin-top: 22px; max-width: none; }
+  .fermer {
+    position: absolute; top: 12px; right: 14px; width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--bord); background: transparent; color: var(--doux);
+    font-size: 1.4rem; line-height: 1; cursor: pointer;
+  }
+  .fermer:hover { color: var(--phare); border-color: var(--phare); }
+
   footer { border-top: 1px solid var(--bord); padding: 30px 0 40px; text-align: center; color: var(--doux); font-size: .85rem; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
 <div class="ciel" id="ciel"></div>
+<button class="top-contact" id="ouvrir-contact" type="button">Contact</button>
 
 <div class="wrap">
   <header>
+    <div class="logo-anim">
+      <video autoplay muted loop playsinline preload="auto" poster="https://cms-toolkit-artifacts.artlist.io/content/-t-e-x-t_-t-o_-i-m-a-g-e-v1/media__2/image-17f46c42-6c47-496f-8d0a-587e977aa1e6.png?Expires=2110448532&amp;Key-Pair-Id=K2ZDLYDZI2R1DF&amp;Signature=uNTfkm-Ohr9Tj1moTwreS-hcrq4m7PDEi2OF-3w8b3Mpe1twMnNuvNemvWlUjwtqPUQfo6IUdhlWPZOSxu~XLsAm6EQxzy57KPM9yUjONJ1VDYpQKmpC1-JQoso9qCB~Jvz6RxqXYDnGEXm3HikEhmIz1cGPp7KMI3EtoY3PecCC5hcR9~~raG0o-47lhpDgbJvghCcunGhJe9bKjwXENXUtvCfoY~yw12V91ztQaOEcwzjY9rsXE7uwrXRg4mBqjuUgtoK1mZ6uleJlueC4DBzmi8A2CUxloDAZTMRS7YOJL3XsnLO-P4m5IQxY9UnqTYKxBggLkVB1FB~Ulg4tBA__" aria-label="Logo animé de L'Escale du Soir">
+        <source src="https://cms-toolkit-artifacts.artlist.io/content/-e-x-t-e-r-n-a-l_-i-m-a-g-e_-t-o_-v-i-d-e-o-v1/media__3/-e-x-t-e-r-n-a-l_-i-m-a-g-e_-t-o_-v-i-d-e-o-690d8e1e-dca3-46fe-b8df-5b0ad9e98030.mp4?Expires=2110449882&amp;Key-Pair-Id=K2ZDLYDZI2R1DF&amp;Signature=Wxf2e4jzqiWD3y4oeS4EGk90lo53jf7km-O0ci8zr9fT0vXuXbfAIbwH3qYi97HsPjivzGEVZLIERgU9Asgzb2REcTV-7By1m9YK2y5wDlkjNNwIlXWFIbDm~YBapfnz0mKSjuicTW8o9fu1wtbQHQpKTQcrHw4JKlBCMRgwOeSK35Vwcyyg2CRD-jjg0T5pBSB77UMBVwA5KQ6kbNKosZ1-k4vxEDigj1xsRoePd3MXIOUqG2lGfkY9O3~xBxzzCJgtOHLVlF72c1Fhm-C~APRil3VUbs1KgYbxjIpMadGvYIkP5lz9bxzKxCxlr65liThl0h0HwxgpBVEUnmsSsw__" type="video/mp4">
+      </video>
+    </div>
     <p class="sur-titre">la radio</p>
     <h1>L'Escale<br><em>du Soir</em></h1>
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
@@ -145,6 +204,22 @@
     <a class="bouton" id="appeler" href="#">Appeler l'antenne</a>
     <p class="note" id="note"></p>
   </section>
+
+  <dialog class="contact" id="contact" aria-labelledby="titre-contact">
+    <button class="fermer" id="fermer-contact" type="button" aria-label="Fermer">&times;</button>
+    <h2 id="titre-contact">Nous écrire</h2>
+    <p class="intro">Une question, une idée d'émission, un sujet à aborder à l'antenne ? Laissez-nous un mot.</p>
+    <form id="form-contact">
+      <div class="ligne">
+        <div><label for="c-nom">Prénom</label><input id="c-nom" name="prenom" required autocomplete="given-name"></div>
+        <div><label for="c-mail">E-mail</label><input id="c-mail" name="email" type="email" required autocomplete="email"></div>
+      </div>
+      <div><label for="c-tel">Téléphone (facultatif)</label><input id="c-tel" name="telephone" type="tel" autocomplete="tel"></div>
+      <div><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+      <button class="bouton" type="submit">Envoyer</button>
+      <p class="retour" id="retour"></p>
+    </form>
+  </dialog>
 </div>
 
 <footer>
@@ -211,6 +286,42 @@
       document.getElementById("note").textContent = "Les lignes ouvrent bientôt.";
     });
   }
+
+  // Fenêtre de contact
+  const dlg = document.getElementById("contact");
+  document.getElementById("ouvrir-contact").addEventListener("click", () => dlg.showModal());
+  document.getElementById("fermer-contact").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+
+  // Formulaire de contact (EmailJS)
+  try { emailjs.init("liRFAyxBo1908cbzF"); } catch (e) {}
+  const form = document.getElementById("form-contact");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const btn = form.querySelector("button");
+    const retour = document.getElementById("retour");
+    const d = Object.fromEntries(new FormData(form));
+    const maintenant = new Date();
+    btn.disabled = true; btn.textContent = "Envoi...";
+    emailjs.send("service_8pt08ad", "template_qe0x9k7", {
+      subject: "Nouveau message - L'Escale du Soir",
+      name: d.prenom, prenom: d.prenom, email: d.email,
+      telephone: d.telephone || "-",
+      type_consultation: "Contact L'Escale du Soir (escaledusoir.ch)",
+      message: d.message,
+      date: maintenant.toLocaleDateString("fr-CH"),
+      heure: maintenant.toLocaleTimeString("fr-CH", { hour: "2-digit", minute: "2-digit" }),
+      recu_le: maintenant.toLocaleString("fr-CH")
+    }).then(() => {
+      form.reset();
+      retour.textContent = "Message bien reçu. On vous répond très vite.";
+      btn.textContent = "Envoyer"; btn.disabled = false;
+      setTimeout(() => { dlg.close(); retour.textContent = ""; }, 2500);
+    }).catch(() => {
+      retour.textContent = "Oups, l'envoi a échoué. Réessayez dans un instant.";
+      btn.textContent = "Envoyer"; btn.disabled = false;
+    });
+  });
 </script>
 </body>
 </html>
