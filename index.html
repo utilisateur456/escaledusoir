@@ -110,6 +110,7 @@
   }
   .play:hover { transform: scale(1.06); background: var(--phare-fonce); }
   .play svg { width: 26px; height: 26px; }
+  .lecteur-caster { margin-top: 40px; width: 100%; max-width: 460px; border-radius: 22px; overflow: hidden; }
   .infos { text-align: left; }
   .direct { display: flex; align-items: center; gap: 8px; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--doux); }
   .point { width: 8px; height: 8px; border-radius: 50%; background: #666; }
@@ -198,13 +199,9 @@
     <h1>L'Escale du Soir</h1>
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
 
-    <div class="lecteur" id="lecteur">
-      <button class="play" id="play" aria-label="Écouter la radio">
-        <svg id="icone" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-      <div class="infos">
-        <div class="direct"><span class="point"></span>En direct</div>
-        <div class="statut" id="statut">L'antenne s'allume bientôt.</div>
+    <div class="lecteur-caster">
+      <div data-type="streamPlayer" data-publicToken="2859a804-483b-4b11-871f-5a02c5b6ea99" data-theme="dark" data-color="f2b45a" data-channelId="" data-rendered="false" class="cstrEmbed">
+        <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
       </div>
     </div>
   </header>
@@ -290,7 +287,7 @@
   const PLAY = '<path d="M8 5v14l11-7z"/>';
   const PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
 
-  play.addEventListener("click", () => {
+  if (play) play.addEventListener("click", () => {
     if (!STREAM_URL) {
       statut.textContent = "Pas encore à l'antenne. Patience, on arrive.";
       return;
@@ -360,5 +357,6 @@
     });
   });
 </script>
+<script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
 </body>
 </html>
