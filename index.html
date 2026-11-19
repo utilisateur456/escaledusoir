@@ -47,7 +47,7 @@
   .sur-titre { letter-spacing: .3em; text-transform: uppercase; font-size: .78rem; color: var(--phare); margin-bottom: 18px; }
   h1 {
     font-family: "Cinzel", "Trajan Pro", Georgia, serif; font-weight: 600;
-    font-size: clamp(2.1rem, 7vw, 4.3rem); line-height: 1.1; letter-spacing: .04em; text-transform: uppercase;
+    font-size: clamp(1.7rem, 6.2vw, 3.6rem); line-height: 1.15; letter-spacing: .03em; white-space: nowrap;
     background:
       repeating-linear-gradient(100deg, rgba(255,255,255,.10) 0 1px, rgba(0,0,0,.08) 1px 3px),
       linear-gradient(180deg, #fff3d1 0%, #f6cf86 22%, #d99a45 46%, #8f5a1c 56%, #e9b766 72%, #fff0c4 88%, #b47a30 100%);
@@ -57,18 +57,19 @@
   }
   h1 em { font-style: normal; }
   .logo-anim {
-    width: min(560px, 94vw); aspect-ratio: 1 / .86; overflow: hidden; margin-bottom: 6px;
-    -webkit-mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 82%, transparent 100%);
+    width: min(560px, 94vw); aspect-ratio: 1 / .66; overflow: hidden; margin-bottom: 4px;
+    -webkit-mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
     -webkit-mask-composite: source-in;
-            mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 82%, transparent 100%);
+            mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
             mask-composite: intersect;
   }
+  .sous-titre { margin-top: 6px; letter-spacing: .5em; text-transform: uppercase; font-size: .8rem; color: var(--phare); padding-left: .5em; }
   .titre-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .logo-anim { position: relative; }
   .logo-anim video { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
   /* Faisceau du phare qui tourne (superposé à la vidéo) */
   .faisceau {
-    position: absolute; left: 48.4%; top: 36.3%; width: 230%; aspect-ratio: 1;
+    position: absolute; left: 48.4%; top: 47.3%; width: 230%; aspect-ratio: 1;
     transform: translate(-50%, -50%) scaleY(.30); pointer-events: none;
     -webkit-mask: radial-gradient(circle, #000 0 8%, rgba(0,0,0,.85) 22%, transparent 48%);
             mask: radial-gradient(circle, #000 0 8%, rgba(0,0,0,.85) 22%, transparent 48%);
@@ -84,7 +85,7 @@
     animation: tourne 6s linear infinite;
   }
   .lanterne {
-    position: absolute; left: 48.4%; top: 36.3%; width: 9%; aspect-ratio: 1; border-radius: 50%;
+    position: absolute; left: 48.4%; top: 47.3%; width: 9%; aspect-ratio: 1; border-radius: 50%;
     transform: translate(-50%, -50%); pointer-events: none; mix-blend-mode: screen;
     background: radial-gradient(circle, rgba(255,240,200,.95) 0 18%, rgba(255,200,110,.45) 40%, transparent 70%);
     animation: pulse 3s ease-in-out infinite;
@@ -192,7 +193,8 @@
       <div class="faisceau" aria-hidden="true"></div>
       <div class="lanterne" aria-hidden="true"></div>
     </div>
-    <h1 class="titre-cache">L'Escale du Soir, la radio</h1>
+    <h1>L'Escale du Soir</h1>
+    <p class="sous-titre">la radio</p>
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
 
     <div class="lecteur" id="lecteur">
