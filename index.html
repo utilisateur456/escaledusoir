@@ -77,6 +77,10 @@
     filter: drop-shadow(0 2px 0 rgba(60,35,8,.55)) drop-shadow(0 10px 24px rgba(242,180,90,.18));
   }
   h1 em { font-style: normal; }
+  h1.multi { background: none; -webkit-text-fill-color: currentColor; color: inherit;
+    filter: drop-shadow(0 3px 0 rgba(0,0,0,.6)); }
+  h1.multi span[style] { background: linear-gradient(180deg, var(--c2) 0%, var(--c1) 60%, var(--c1) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--c1); }
   .logo-anim {
     width: min(560px, 94vw); aspect-ratio: 1 / .66; overflow: hidden; margin-bottom: 4px;
     -webkit-mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
@@ -341,7 +345,7 @@
       <div class="faisceau" aria-hidden="true"></div>
       <div class="lanterne" aria-hidden="true"></div>
     </div>
-    <h1>Radio Escale</h1>
+    <h1 class="multi" aria-label="Radio Escale"><span aria-hidden="true"><span style="--c1:#ff9f1c;--c2:#ffd27a">R</span><span style="--c1:#ff3fa4;--c2:#ffc2e3">a</span><span style="--c1:#3d7bff;--c2:#bcd2ff">d</span><span style="--c1:#5ee03a;--c2:#d2ffb8">i</span><span style="--c1:#a855f7;--c2:#e3c8ff">o</span><span class="esp"> </span><span style="--c1:#ffd60a;--c2:#fff2b3">E</span><span style="--c1:#ff4d3d;--c2:#ffc0b8">s</span><span style="--c1:#22d3ee;--c2:#c9fbff">c</span><span style="--c1:#ff7a45;--c2:#ffd0bd">a</span><span style="--c1:#7c83ff;--c2:#d9dbff">l</span><span style="--c1:#2ee6a6;--c2:#c4ffe9">e</span></span></h1>
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
 
     <button class="bouton ecouter" id="ecouter" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Écouter en direct<span class="rec" aria-hidden="true"></span></button>
