@@ -421,7 +421,6 @@
     const es = EMISSIONS[suivant[2]];
     const bloc = document.getElementById("moment");
     bloc.style.setProperty("--c1", e.c1); bloc.style.setProperty("--c2", e.c2); bloc.style.setProperty("--fond", e.fond);
-    bloc.href = "programme.html?e=" + id;
     document.getElementById("m-picto").innerHTML = PICTOS[e.picto];
     document.getElementById("m-titre").textContent = e.titre;
     document.getElementById("m-heure").textContent = affiche(d) + " à " + affiche(f) + " · " + e.slogan;
