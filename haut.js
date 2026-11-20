@@ -10,6 +10,7 @@
   .haut-page.visible{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
   .haut-page:hover{background:#f2b45a;color:#0d1220;transform:translate(-50%,-3px)}
   .haut-page svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  footer{padding-bottom:96px !important}
   @media (prefers-reduced-motion:reduce){.haut-page{transition:none}}`;
   document.head.appendChild(st);
 
