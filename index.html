@@ -126,6 +126,9 @@
   .carte .quand { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--phare); }
   .carte h3 { font-family: var(--titre-police); font-weight: 600; letter-spacing: -0.015em; font-size: 1.4rem; margin: 8px 0 10px; }
   .carte p { color: var(--doux); }
+  a.carte-lien { display: block; color: inherit; text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
+  a.carte-lien:hover { transform: translateY(-4px); border-color: rgba(242,180,90,.6); box-shadow: 0 18px 40px -14px rgba(242,180,90,.45); }
+  .carte .voir { display: inline-block; margin-top: 12px; font-weight: 600; font-size: .9rem; color: var(--phare); }
 
   .appel { text-align: center; }
   .appel .intro { margin: 0 auto; }
@@ -240,11 +243,12 @@
         <h3>La libre antenne</h3>
         <p>Vous appelez, on écoute, on en parle. À plusieurs, c'est tout de suite plus léger.</p>
       </div>
-      <div class="carte">
+      <a class="carte carte-lien" href="programme.html">
         <span class="quand">Horaires</span>
-        <h3>Bientôt dévoilés</h3>
-        <p>On règle encore les projecteurs du phare. Revenez vite.</p>
-      </div>
+        <h3>La grille des programmes</h3>
+        <p>Du réveil jusqu'au bout de la nuit, toutes nos émissions jour par jour.</p>
+        <span class="voir">Voir la grille &rarr;</span>
+      </a>
     </div>
   </section>
 
@@ -353,6 +357,7 @@
   document.getElementById("fermer-radio").addEventListener("click", fermerRadio);
   document.getElementById("radio-voile").addEventListener("click", fermerRadio);
   document.addEventListener("keydown", e => { if (e.key === "Escape") fermerRadio(); });
+  if (location.hash === "#ecouter") ouvrirRadio();
 
   // Fenêtre de contact
   const dlg = document.getElementById("contact");
