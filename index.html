@@ -8,7 +8,7 @@
 <meta name="description" content="L'Escale du Soir, la radio. De la musique en continu et une libre antenne le soir pour parler de ce qui coince au quotidien.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --nuit: #0d1220;
@@ -126,6 +126,49 @@
   .carte .quand { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--phare); }
   .carte h3 { font-family: var(--titre-police); font-weight: 600; letter-spacing: -0.015em; font-size: 1.4rem; margin: 8px 0 10px; }
   .carte p { color: var(--doux); }
+
+  /* Bloc En ce moment */
+  .moment {
+    --c1: #f2b45a; --c2: #fff0c4; --fond: #3a2608;
+    position: relative; display: block; overflow: hidden; margin-top: 30px; width: 100%; max-width: 460px;
+    padding: 18px 20px 16px; border-radius: 20px; text-align: left; text-decoration: none; color: var(--texte);
+    border: 1px solid color-mix(in srgb, var(--c1) 45%, transparent);
+    background: linear-gradient(120deg, color-mix(in srgb, var(--fond) 75%, transparent), rgba(255,255,255,.03) 75%);
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s;
+  }
+  .moment::before {
+    content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .3s; z-index: 0;
+    background: radial-gradient(circle at 12% 40%, color-mix(in srgb, var(--c1) 35%, transparent), transparent 65%);
+  }
+  .moment[hidden] { display: none; }
+  .moment > * { position: relative; z-index: 1; }
+  .moment:hover, .moment:focus-visible {
+    transform: translateY(-4px) scale(1.01); outline: none; border-color: color-mix(in srgb, var(--c1) 75%, transparent);
+    box-shadow: 0 20px 44px -14px color-mix(in srgb, var(--c1) 60%, transparent);
+  }
+  .moment:hover::before, .moment:focus-visible::before { opacity: 1; }
+  .moment .m-haut { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; }
+  .moment .m-etiquette { color: var(--c1); font-weight: 700; }
+  .moment .m-voir { color: var(--doux); letter-spacing: .05em; text-transform: none; font-size: .82rem; transition: color .2s; }
+  .moment:hover .m-voir { color: var(--c1); }
+  .moment .m-corps { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+  .moment .m-picto {
+    flex: none; width: 50px; height: 50px; border-radius: 15px; display: grid; place-items: center; color: var(--c1);
+    background: color-mix(in srgb, var(--c1) 16%, transparent); border: 1px solid color-mix(in srgb, var(--c1) 45%, transparent);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), background .25s, color .25s;
+  }
+  .moment .m-picto svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .moment:hover .m-picto { transform: rotate(-8deg) scale(1.1); background: var(--c1); color: var(--fond); }
+  .moment .m-titre {
+    display: block; font-family: "Anton", Impact, sans-serif; font-size: clamp(1.6rem, 6vw, 2.1rem); line-height: 1.05;
+    background: linear-gradient(100deg, var(--c1) 0%, var(--c2) 50%, var(--c1) 100%); background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--c1);
+    transition: background-position .6s ease, letter-spacing .3s ease;
+  }
+  .moment:hover .m-titre { background-position: 100% 0; letter-spacing: .03em; }
+  .moment .m-heure { display: block; margin-top: 3px; font-size: .88rem; color: var(--doux); }
+  .moment .m-suite { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--bord); font-size: .85rem; color: var(--doux); }
+  .moment .m-suite b { color: var(--texte); font-weight: 600; }
   a.carte-lien { display: block; color: inherit; text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
   a.carte-lien:hover { transform: translateY(-4px); border-color: rgba(242,180,90,.6); box-shadow: 0 18px 40px -14px rgba(242,180,90,.45); }
   .carte .voir { display: inline-block; margin-top: 12px; font-weight: 600; font-size: .9rem; color: var(--phare); }
@@ -225,6 +268,15 @@
     <p class="accroche">De la musique toute la journée. Et le soir, on décroche le téléphone.</p>
 
     <button class="bouton ecouter" id="ecouter" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Écouter en direct<span class="rec" aria-hidden="true"></span></button>
+
+    <a class="moment" id="moment" href="programme.html" hidden>
+      <span class="m-haut"><span class="m-etiquette">En ce moment</span><span class="m-voir">Voir la grille &rarr;</span></span>
+      <span class="m-corps">
+        <span class="m-picto" id="m-picto" aria-hidden="true"></span>
+        <span><span class="m-titre" id="m-titre"></span><span class="m-heure" id="m-heure"></span></span>
+      </span>
+      <span class="m-suite" id="m-suite"></span>
+    </a>
   </header>
 
   <section>
@@ -308,6 +360,7 @@
   © <span id="annee"></span> L'Escale du Soir · escaledusoir.ch
 </footer>
 
+<script src="grille.js"></script>
 <script>
   /* ===== À COMPLÉTER PLUS TARD ===== */
   const STREAM_URL = ""; // adresse du flux radio (Icecast, Radio.co...)
@@ -354,6 +407,29 @@
       statut.textContent = "En pause. On vous attend.";
     }
   });
+
+  // Bloc "En ce moment" (grille partagée dans grille.js)
+  function majMoment() {
+    const n = maintenantSuisse();
+    const jour = GRILLE[n.jour];
+    const idx = jour.findIndex(([d, f]) => n.minutes >= enMinutes(d) && n.minutes < enMinutes(f));
+    if (idx < 0) return;
+    const [d, f, id] = jour[idx];
+    const e = EMISSIONS[id];
+    const suivant = jour[idx + 1] || GRILLE[(n.jour + 1) % 7][0];
+    const es = EMISSIONS[suivant[2]];
+    const bloc = document.getElementById("moment");
+    bloc.style.setProperty("--c1", e.c1); bloc.style.setProperty("--c2", e.c2); bloc.style.setProperty("--fond", e.fond);
+    bloc.href = "programme.html?e=" + id;
+    document.getElementById("m-picto").innerHTML = PICTOS[e.picto];
+    document.getElementById("m-titre").textContent = e.titre;
+    document.getElementById("m-heure").textContent = affiche(d) + " à " + affiche(f) + " · " + e.slogan;
+    document.getElementById("m-suite").innerHTML = "Ensuite à " + affiche(suivant[0]) + " : <b></b>";
+    document.getElementById("m-suite").querySelector("b").textContent = es.titre;
+    bloc.hidden = false;
+  }
+  majMoment();
+  setInterval(majMoment, 60000);
 
   // Demande de passage à l'antenne
   const dlgAppel = document.getElementById("appel");
