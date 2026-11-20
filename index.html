@@ -152,6 +152,9 @@
   .contact input:focus, .contact textarea:focus { outline: none; border-color: var(--phare); }
   .contact .bouton { justify-self: start; margin-top: 6px; }
   .contact .retour { min-height: 1.4em; color: var(--doux); }
+  .contact label.accord { display: flex; gap: 12px; align-items: flex-start; text-transform: none; letter-spacing: 0; font-size: .92rem; color: var(--texte); cursor: pointer; }
+  .contact label.accord input { width: 20px; height: 20px; padding: 0; flex: none; margin-top: 2px; accent-color: var(--phare); }
+  .contact .discret { font-size: .85rem; color: var(--doux); }
   @media (max-width: 600px) { .contact .ligne { grid-template-columns: 1fr; } }
 
   .top-contact {
@@ -253,9 +256,8 @@
 
   <section class="appel">
     <h2>Quelque chose sur le cœur ?</h2>
-    <p class="intro">Pendant la libre antenne, appelez directement depuis votre navigateur. Un micro, un peu de courage, et c'est parti.</p>
-    <a class="bouton" id="appeler" href="#">Appeler l'antenne</a>
-    <p class="note" id="note"></p>
+    <p class="intro">Laissez votre prénom, votre numéro et le sujet qui vous tient à cœur. On vous rappelle, puis on vous envoie par SMS le lien pour passer à l'antenne.</p>
+    <button class="bouton" id="appeler" type="button">Passer à l'antenne</button>
   </section>
 
   <dialog class="contact" id="contact" aria-labelledby="titre-contact">
@@ -271,6 +273,24 @@
       <div><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
       <button class="bouton" type="submit">Envoyer</button>
       <p class="retour" id="retour"></p>
+    </form>
+  </dialog>
+
+  <dialog class="contact" id="appel" aria-labelledby="titre-appel">
+    <button class="fermer" id="fermer-appel" type="button" aria-label="Fermer">&times;</button>
+    <h2 id="titre-appel">Passer à l'antenne</h2>
+    <p class="intro">Dites-nous qui vous êtes et de quoi vous voulez parler. On vous rappelle avant la libre antenne, du lundi au jeudi de 22h00 à 23h00.</p>
+    <form id="form-appel">
+      <div class="ligne">
+        <div><label for="a-nom">Prénom</label><input id="a-nom" name="prenom" required autocomplete="given-name"></div>
+        <div><label for="a-tel">Téléphone</label><input id="a-tel" name="telephone" type="tel" required autocomplete="tel" inputmode="tel"></div>
+      </div>
+      <div><label for="a-mail">E-mail (facultatif)</label><input id="a-mail" name="email" type="email" autocomplete="email"></div>
+      <div><label for="a-sujet">De quoi voulez-vous parler ?</label><textarea id="a-sujet" name="sujet" required placeholder="En quelques mots, le sujet qui vous tient à cœur."></textarea></div>
+      <label class="accord"><input type="checkbox" name="accord" required> J'accepte d'être rappelé et que ma voix soit diffusée en direct sur L'Escale du Soir.</label>
+      <p class="discret">Votre numéro reste entre nous. Il sert uniquement à vous rappeler.</p>
+      <button class="bouton" type="submit">Envoyer ma demande</button>
+      <p class="retour" id="retour-appel"></p>
     </form>
   </dialog>
 </div>
@@ -291,7 +311,6 @@
 <script>
   /* ===== À COMPLÉTER PLUS TARD ===== */
   const STREAM_URL = ""; // adresse du flux radio (Icecast, Radio.co...)
-  const CALL_URL   = ""; // lien vMix Call pour les auditeurs
   /* ================================= */
 
   // Ciel étoilé
@@ -336,18 +355,11 @@
     }
   });
 
-  // Bouton d'appel
-  const appeler = document.getElementById("appeler");
-  if (CALL_URL) {
-    appeler.href = CALL_URL;
-    appeler.target = "_blank";
-    appeler.rel = "noopener";
-  } else {
-    appeler.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.getElementById("note").textContent = "Les lignes ouvrent bientôt.";
-    });
-  }
+  // Demande de passage à l'antenne
+  const dlgAppel = document.getElementById("appel");
+  document.getElementById("appeler").addEventListener("click", () => dlgAppel.showModal());
+  document.getElementById("fermer-appel").addEventListener("click", () => dlgAppel.close());
+  dlgAppel.addEventListener("click", (e) => { if (e.target === dlgAppel) dlgAppel.close(); });
 
   // Fenêtre radio : elle reste chargée, le son continue quand on la ferme
   const ouvrirRadio = () => document.body.classList.add("radio-ouverte");
@@ -397,6 +409,46 @@
       retour.textContent = "Oups, l'envoi a échoué. Réessayez dans un instant.";
     }
     btn.textContent = "Envoyer"; btn.disabled = false;
+  });
+
+  const formAppel = document.getElementById("form-appel");
+  formAppel.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = formAppel.querySelector("button[type=submit]");
+    const retour = document.getElementById("retour-appel");
+    const d = Object.fromEntries(new FormData(formAppel));
+    if ((d.telephone.match(/\d/g) || []).length < 9) {
+      document.getElementById("retour-appel").textContent = "Vérifiez votre numéro de téléphone, il semble incomplet.";
+      document.getElementById("a-tel").focus();
+      return;
+    }
+    btn.disabled = true; btn.textContent = "Envoi...";
+    try {
+      const r = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: "Demande de passage à l'antenne - " + d.prenom,
+          from_name: "Site L'Escale du Soir",
+          replyto: d.email || undefined,
+          "Prénom": d.prenom,
+          "Téléphone à rappeler": d.telephone,
+          "E-mail": d.email || "-",
+          "Sujet": d.sujet,
+          "Accord pour passer en direct": "Oui",
+          "Reçu le": new Date().toLocaleString("fr-CH", { timeZone: "Europe/Zurich" })
+        })
+      });
+      const res = await r.json();
+      if (!res.success) throw new Error(res.message);
+      formAppel.reset();
+      retour.textContent = "Demande bien reçue. On vous rappelle très vite.";
+      setTimeout(() => { dlgAppel.close(); retour.textContent = ""; }, 3000);
+    } catch (err) {
+      retour.textContent = "Oups, l'envoi a échoué. Réessayez dans un instant.";
+    }
+    btn.textContent = "Envoyer ma demande"; btn.disabled = false;
   });
 </script>
 <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
