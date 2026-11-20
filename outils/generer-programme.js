@@ -16,7 +16,7 @@ const creneaux = id => {
 
 let html = `<section class="resume" id="toutes-les-emissions">
   <h2>Toutes les émissions</h2>
-  <p class="resume-intro">L'Escale du Soir, radio en ligne de Suisse romande, diffuse de la musique 24 heures sur 24 et une libre antenne du lundi au jeudi de 22h00 à 23h00. Heures de Suisse.</p>
+  <p class="resume-intro">Radio Escale, radio en ligne de Suisse romande, diffuse de la musique 24 heures sur 24, et L'Escale du Soir, sa libre antenne, du lundi au jeudi de 22h00 à 23h00. Heures de Suisse.</p>
   <div class="resume-liste">\n`;
 for (const [id, e] of Object.entries(EMISSIONS)) {
   html += `    <article class="resume-item" style="--c1:${e.c1}">
@@ -31,15 +31,15 @@ html += `  </div>\n</section>`;
 const ld = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "WebPage", "@id": "https://escaledusoir.ch/programme.html", "url": "https://escaledusoir.ch/programme.html",
-      "name": "Grille des programmes de L'Escale du Soir", "inLanguage": "fr-CH",
-      "isPartOf": { "@type": "WebSite", "@id": "https://escaledusoir.ch/#site", "url": "https://escaledusoir.ch/" },
-      "about": { "@type": "RadioStation", "@id": "https://escaledusoir.ch/#radio", "name": "L'Escale du Soir", "url": "https://escaledusoir.ch/" } },
-    { "@type": "ItemList", "name": "Émissions de L'Escale du Soir",
+    { "@type": "WebPage", "@id": "https://radioescale.ch/programme.html", "url": "https://radioescale.ch/programme.html",
+      "name": "Grille des programmes de Radio Escale", "inLanguage": "fr-CH",
+      "isPartOf": { "@type": "WebSite", "@id": "https://radioescale.ch/#site", "url": "https://radioescale.ch/" },
+      "about": { "@type": "RadioStation", "@id": "https://radioescale.ch/#radio", "name": "Radio Escale", "url": "https://radioescale.ch/" } },
+    { "@type": "ItemList", "name": "Émissions de Radio Escale",
       "itemListElement": Object.entries(EMISSIONS).map(([id, e], i) => ({
         "@type": "ListItem", "position": i + 1,
         "item": { "@type": "RadioSeries", "name": e.titre, "description": e.slogan + " " + e.texte, "inLanguage": "fr",
-          "genre": e.genres, "url": "https://escaledusoir.ch/programme.html?e=" + id }
+          "genre": e.genres, "url": "https://radioescale.ch/programme.html?e=" + id }
       })) }
   ]
 };

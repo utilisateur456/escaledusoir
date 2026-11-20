@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /outils/
 
-Sitemap: https://escaledusoir.ch/sitemap.xml
+Sitemap: https://radioescale.ch/sitemap.xml

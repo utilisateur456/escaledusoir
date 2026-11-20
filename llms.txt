@@ -1,39 +1,39 @@
-# L'Escale du Soir
+# Radio Escale
 
-> Radio en ligne gratuite de Suisse romande, basée dans le canton de Vaud. De la musique toute la journée (pop, rock, dance, tubes des années 70, 80, 90 et 2000) et une libre antenne du lundi au jeudi de 22h00 à 23h00, où les auditeurs parlent de ce qui coince au quotidien.
+> Radio en ligne gratuite de Suisse romande, basée dans le canton de Vaud. De la musique toute la journée (pop, rock, dance, tubes des années 70, 80, 90 et 2000) et L'Escale du Soir, la libre antenne du lundi au jeudi de 22h00 à 23h00, où les auditeurs parlent de ce qui coince au quotidien. La radio s'appelait auparavant L'Escale du Soir, ce nom désigne désormais son émission de libre antenne.
 
-- Écoute : gratuite, sans inscription, sur https://escaledusoir.ch avec le bouton « Écouter en direct ».
+- Écoute : gratuite, sans inscription, sur https://radioescale.ch avec le bouton « Écouter en direct ».
 - Passer à l'antenne : bouton « Passer à l'antenne » sur le site, l'auditeur laisse son prénom, son numéro et son sujet, la radio le rappelle puis lui envoie par SMS le lien pour intervenir en direct.
 - Contact : bouton « Contact » sur le site.
 - Langue : français.
 
 ## Pages
 
-- [Accueil](https://escaledusoir.ch/): présentation, écoute en direct, émission en cours, questions fréquentes.
-- [Grille des programmes](https://escaledusoir.ch/programme.html): toutes les émissions jour par jour, avec horaires et descriptions.
+- [Accueil](https://radioescale.ch/): présentation, écoute en direct, émission en cours, questions fréquentes.
+- [Grille des programmes](https://radioescale.ch/programme.html): toutes les émissions jour par jour, avec horaires et descriptions.
 
 ## Questions fréquentes
 
-### Comment écouter L'Escale du Soir ?
-Directement sur escaledusoir.ch, avec le bouton « Écouter en direct ». Ça marche sur ordinateur, tablette et téléphone, sans application et sans inscription.
+### Comment écouter Radio Escale ?
+Directement sur radioescale.ch, avec le bouton « Écouter en direct ». Ça marche sur ordinateur, tablette et téléphone, sans application et sans inscription.
 
 ### L'écoute est-elle gratuite ?
-Oui. L'Escale du Soir s'écoute gratuitement, sans abonnement.
+Oui. Radio Escale s'écoute gratuitement, sans abonnement.
 
-### C'est quoi la libre antenne ?
-Du lundi au jeudi, de 22h00 à 23h00, les auditeurs prennent la parole pour parler de ce qui coince au quotidien : voisinage, travail, moral, famille. On écoute, on en parle, sans jugement.
+### C'est quoi L'Escale du Soir ?
+C'est la libre antenne de Radio Escale. Du lundi au jeudi, de 22h00 à 23h00, les auditeurs prennent la parole pour parler de ce qui coince au quotidien : voisinage, travail, moral, famille. On écoute, on en parle, sans jugement.
 
 ### Comment passer à l'antenne ?
 Cliquez sur « Passer à l'antenne » et laissez votre prénom, votre numéro et le sujet qui vous tient à cœur. On vous rappelle, puis on vous envoie par SMS le lien pour intervenir en direct.
 
-### Quelle musique passe sur L'Escale du Soir ?
+### Quelle musique passe sur Radio Escale ?
 De la pop, du rock, de la dance et les grands tubes des années 70, 80, 90 et 2000, répartis en émissions tout au long de la journée. Le détail est dans la grille des programmes.
 
 ### D'où vient la radio ?
-L'Escale du Soir est une radio en ligne de Suisse romande, basée dans le canton de Vaud. Elle s'écoute partout dans le monde.
+Radio Escale est une radio en ligne de Suisse romande, basée dans le canton de Vaud. Elle s'écoute partout dans le monde.
 
 ### Comment contacter la radio ?
-Avec le bouton « Contact » en haut de la page. Votre message arrive directement à l'équipe de L'Escale du Soir.
+Avec le bouton « Contact » en haut de la page. Votre message arrive directement à l'équipe de Radio Escale.
 
 ## Émissions
 
@@ -95,11 +95,11 @@ Horaires (heure de Suisse) : Jeudi de 20:00 à 22:00, Vendredi de 22:00 à 00:00
 L'époque de : Dr. Alban, 2 Unlimited, Haddaway, Mylène Farmer, TLC.
 
 ### Radio 70's 80's Mix
-Les nuits rétro de L'Escale. Toute la nuit, les plus belles chansons des années 70 et 80 tournent pour les insomniaques, les travailleurs de nuit et les rêveurs. Le phare reste allumé.
+Les nuits rétro de Radio Escale. Toute la nuit, les plus belles chansons des années 70 et 80 tournent pour les insomniaques, les travailleurs de nuit et les rêveurs. Le phare reste allumé.
 Horaires (heure de Suisse) : Lundi de 00:00 à 06:00, Lundi de 23:00 à 00:00, Mardi de 00:00 à 06:00, Mardi de 23:00 à 00:00, Mercredi de 00:00 à 06:00, Mercredi de 23:00 à 00:00, Jeudi de 00:00 à 06:00, Jeudi de 23:00 à 00:00, Vendredi de 00:00 à 06:00, Samedi de 00:00 à 06:00, Dimanche de 00:00 à 06:00.
 L'époque de : Elton John, Daniel Balavoine, Tina Turner, Earth, Wind & Fire, Indochine.
 
-### La libre antenne
-Programme à définir. Les lignes ouvrent bientôt. Vous appelez, on écoute, on en parle. Le voisin bruyant, le chef impossible, le moral en berne. La libre antenne de L'Escale du Soir arrive du lundi au jeudi, de 22h00 à 23h00. Le programme exact sera bientôt dévoilé. Restez à l'écoute.
+### L'Escale du Soir
+La libre antenne. Programme à définir, les lignes ouvrent bientôt. Vous appelez, on écoute, on en parle. Le voisin bruyant, le chef impossible, le moral en berne. L'Escale du Soir, la libre antenne de Radio Escale, arrive du lundi au jeudi, de 22h00 à 23h00. Le programme exact sera bientôt dévoilé. Restez à l'écoute.
 Horaires (heure de Suisse) : Lundi de 22:00 à 23:00, Mardi de 22:00 à 23:00, Mercredi de 22:00 à 23:00, Jeudi de 22:00 à 23:00.
 <!-- EMISSIONS:FIN -->
