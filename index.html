@@ -179,6 +179,15 @@
   }
   .moment[hidden] { display: none; }
   .moment > * { position: relative; z-index: 1; }
+  .moment > .m-photo {
+    position: absolute; z-index: 0; top: 0; right: 0; bottom: 0; width: 62%;
+    background-size: cover; background-position: 85% 60%; opacity: .36;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.55) 35%, #000 75%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.55) 35%, #000 75%);
+    transition: opacity .35s, transform .6s cubic-bezier(.2,.8,.2,1); pointer-events: none;
+  }
+  .moment:hover > .m-photo, .moment:focus-visible > .m-photo { opacity: .55; transform: scale(1.05); }
+  @media (prefers-reduced-motion: reduce) { .moment > .m-photo { transition: none; } .moment:hover > .m-photo { transform: none; } }
   .moment:hover, .moment:focus-visible {
     transform: translateY(-4px) scale(1.01); outline: none; border-color: color-mix(in srgb, var(--c1) 75%, transparent);
     box-shadow: 0 20px 44px -14px color-mix(in srgb, var(--c1) 60%, transparent);
@@ -363,6 +372,7 @@
     <button class="bouton ecouter" id="ecouter" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Écouter en direct<span class="rec" aria-hidden="true"></span></button>
 
     <a class="moment" id="moment" href="programme.html" hidden>
+      <span class="m-photo" id="m-photo" aria-hidden="true"></span>
       <span class="m-haut"><span class="m-etiquette">En ce moment</span><span class="m-voir">Voir la grille &rarr;</span></span>
       <span class="m-corps">
         <span class="m-picto" id="m-picto" aria-hidden="true"></span>
@@ -516,6 +526,7 @@
     const bloc = document.getElementById("moment");
     bloc.style.setProperty("--c1", e.c1); bloc.style.setProperty("--c2", e.c2); bloc.style.setProperty("--fond", e.fond);
     document.getElementById("m-picto").innerHTML = PICTOS[e.picto];
+    document.getElementById("m-photo").style.backgroundImage = "url('images/emissions/" + id + ".jpg')";
     document.getElementById("m-titre").textContent = e.titre;
     document.getElementById("m-heure").textContent = affiche(d) + " à " + affiche(f) + " · " + e.slogan;
     document.getElementById("m-suite").innerHTML = "Ensuite à " + affiche(suivant[0]) + " : <b></b>";
