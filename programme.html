@@ -173,6 +173,12 @@
   body.fiche-ouverte .fiche { transform: translate(-50%, -50%) scale(1); }
   .fiche .haut { padding: 36px 28px 26px; background: radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--c1) 30%, transparent), transparent 65%); }
   .fiche .titre { font-size: clamp(2.2rem, 8vw, 3.4rem); }
+  .fiche-photo { position: relative; aspect-ratio: 2 / 1; overflow: hidden; border-radius: 25px 25px 0 0; }
+  .fiche-photo img { display: block; width: 100%; height: 100%; object-fit: cover;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, rgba(0,0,0,.45) 78%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 52%, rgba(0,0,0,.45) 78%, transparent 100%); }
+  .fiche-photo[hidden] { display: none; }
+  .fiche-photo + .haut { padding-top: 6px; margin-top: -34px; position: relative; background: none; }
   .fiche .slogan { margin-top: 10px; font-weight: 600; color: var(--texte); }
   .fiche .corps { padding: 0 28px 28px; }
   .fiche .corps p { color: #cfcac1; margin-bottom: 18px; }
@@ -591,6 +597,7 @@
 <div class="voile" id="voile"></div>
 <div class="fiche" id="fiche" role="dialog" aria-modal="true" aria-labelledby="fiche-titre">
   <button class="fermer" id="fiche-fermer" type="button" aria-label="Fermer">&times;</button>
+  <div class="fiche-photo" id="fiche-photo"><img id="fiche-img" alt="" width="1000" height="500"></div>
   <div class="haut">
     <div class="picto" id="fiche-picto" aria-hidden="true"></div>
     <div class="titre" id="fiche-titre"></div>
@@ -684,6 +691,8 @@
     fiche.style.setProperty("--c1", e.c1); fiche.style.setProperty("--c2", e.c2); fiche.style.setProperty("--fond", e.fond);
     fiche.classList.toggle("libre", !!e.libre);
     document.getElementById("fiche-picto").innerHTML = PICTOS[e.picto];
+    const img = document.getElementById("fiche-img");
+    img.src = "images/emissions/" + id + ".jpg";
     document.getElementById("fiche-titre").textContent = e.titre;
     const ep = document.getElementById("fiche-epoque"); ep.innerHTML = "";
     (e.artistes || []).forEach(n => { const s = document.createElement("span"); s.textContent = n; ep.appendChild(s); });
