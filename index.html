@@ -201,7 +201,6 @@
 
   footer { border-top: 1px solid var(--bord); padding: 30px 0 40px; text-align: center; color: var(--doux); font-size: .85rem; }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
 <div class="ciel" id="ciel"></div>
@@ -365,34 +364,39 @@
   document.getElementById("fermer-contact").addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
 
-  // Formulaire de contact (EmailJS)
-  try { emailjs.init("liRFAyxBo1908cbzF"); } catch (e) {}
+  // Formulaire de contact (Web3Forms, arrive sur antenne@escaledusoir.ch)
+  const WEB3FORMS_KEY = "12a716b6-2594-49a6-a4ef-d6eff10debd1";
   const form = document.getElementById("form-contact");
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = form.querySelector("button");
     const retour = document.getElementById("retour");
     const d = Object.fromEntries(new FormData(form));
-    const maintenant = new Date();
     btn.disabled = true; btn.textContent = "Envoi...";
-    emailjs.send("service_8pt08ad", "template_qe0x9k7", {
-      subject: "Nouveau message - L'Escale du Soir",
-      name: d.prenom, prenom: d.prenom, email: d.email,
-      telephone: d.telephone || "-",
-      type_consultation: "Contact L'Escale du Soir (escaledusoir.ch)",
-      message: d.message,
-      date: maintenant.toLocaleDateString("fr-CH"),
-      heure: maintenant.toLocaleTimeString("fr-CH", { hour: "2-digit", minute: "2-digit" }),
-      recu_le: maintenant.toLocaleString("fr-CH")
-    }).then(() => {
+    try {
+      const r = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: "Nouveau message - L'Escale du Soir",
+          from_name: "Site L'Escale du Soir",
+          replyto: d.email,
+          "Prénom": d.prenom, "E-mail": d.email,
+          "Téléphone": d.telephone || "-",
+          "Message": d.message,
+          "Reçu le": new Date().toLocaleString("fr-CH", { timeZone: "Europe/Zurich" })
+        })
+      });
+      const res = await r.json();
+      if (!res.success) throw new Error(res.message);
       form.reset();
       retour.textContent = "Message bien reçu. On vous répond très vite.";
-      btn.textContent = "Envoyer"; btn.disabled = false;
       setTimeout(() => { dlg.close(); retour.textContent = ""; }, 2500);
-    }).catch(() => {
+    } catch (err) {
       retour.textContent = "Oups, l'envoi a échoué. Réessayez dans un instant.";
-      btn.textContent = "Envoyer"; btn.disabled = false;
-    });
+    }
+    btn.textContent = "Envoyer"; btn.disabled = false;
   });
 </script>
 <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
