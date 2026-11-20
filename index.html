@@ -562,6 +562,9 @@
     btn.textContent = "Envoyer"; btn.disabled = false;
   });
 
+  if (location.hash === "#appel") document.getElementById("appel").showModal();
+  if (location.hash === "#contact") document.getElementById("contact").showModal();
+
   const formAppel = document.getElementById("form-appel");
   formAppel.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -603,5 +606,6 @@
   });
 </script>
 <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>
