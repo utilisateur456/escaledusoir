@@ -163,6 +163,14 @@
   .carte .quand { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--phare); }
   .carte h3 { font-family: var(--titre-police); font-weight: 600; letter-spacing: -0.015em; font-size: 1.4rem; margin: 8px 0 10px; }
   .carte p { color: var(--doux); }
+  .carte { position: relative; overflow: hidden; transition: transform .25s, border-color .25s, box-shadow .25s; }
+  .carte-photo { display: block; margin: -26px -26px 6px; aspect-ratio: 16 / 9; overflow: hidden; }
+  .carte-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, rgba(0,0,0,.4) 80%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 55%, rgba(0,0,0,.4) 80%, transparent 100%); }
+  .carte:hover .carte-photo img { transform: scale(1.05); }
+  .carte:hover { border-color: rgba(242,180,90,.45); }
+  @media (prefers-reduced-motion: reduce) { .carte-photo img { transition: none; } .carte:hover .carte-photo img { transform: none; } }
 
   /* Bloc En ce moment */
   .moment {
@@ -393,16 +401,19 @@
     <h2>Au programme</h2>
     <div class="grille">
       <div class="carte">
+        <span class="carte-photo"><img src="images/cartes/playlist.jpg" alt="Caisse de vinyles et platine dans une ambiance chaleureuse" width="900" height="506" loading="lazy"></span>
         <span class="quand">En continu</span>
         <h3>La playlist</h3>
         <p>Des titres choisis à la main. Pas par un algorithme fatigué.</p>
       </div>
       <div class="carte">
+        <span class="carte-photo"><img src="images/cartes/soir.jpg" alt="Studio de radio la nuit, micro et phare sur le port" width="900" height="506" loading="lazy"></span>
         <span class="quand">Le soir</span>
         <h3>L'Escale du Soir</h3>
         <p>Vous appelez, on écoute, on en parle. À plusieurs, c'est tout de suite plus léger.</p>
       </div>
       <a class="carte carte-lien" href="programme.html">
+        <span class="carte-photo"><img src="images/cartes/grille.jpg" alt="Cadran de radio ancienne allumé et horloge" width="900" height="506" loading="lazy"></span>
         <span class="quand">Horaires</span>
         <h3>La grille des programmes</h3>
         <p>Du réveil jusqu'au bout de la nuit, toutes nos émissions jour par jour.</p>
