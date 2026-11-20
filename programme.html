@@ -40,7 +40,8 @@
   .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
 
   .barre { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; }
-  .marque { font-family: "Cinzel", Georgia, serif; font-weight: 600; color: var(--phare); text-decoration: none; letter-spacing: .03em; font-size: 1.05rem; white-space: nowrap; }
+  @font-face { font-family: "Point Blank"; src: url("fonts/PointBlank.woff2") format("woff2"); font-display: swap; }
+  .marque { font-family: "Point Blank", "Cinzel", Georgia, serif; font-weight: normal; color: var(--phare); text-decoration: none; letter-spacing: .03em; font-size: 1.45rem; white-space: nowrap; }
   .pilule {
     display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 999px; text-decoration: none;
     border: 1px solid rgba(242,180,90,.55); color: var(--phare); font-weight: 600; font-size: .9rem; white-space: nowrap;
@@ -180,7 +181,7 @@
     .picto { width: 44px; height: 44px; border-radius: 13px; }
     .picto svg { width: 24px; height: 24px; }
     .info { gap: 12px; }
-    .marque { font-size: .9rem; }
+    .marque { font-size: 1.2rem; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
