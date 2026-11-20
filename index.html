@@ -44,7 +44,8 @@
   @keyframes scintille { 50% { opacity: .1; } }
   .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
 
-  header { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 0; }
+  header { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 0 10px; }
+  header + section { padding-top: 56px; }
   .sur-titre { letter-spacing: .3em; text-transform: uppercase; font-size: .78rem; color: var(--phare); margin-bottom: 18px; }
   h1 {
     font-family: "Cinzel", "Trajan Pro", Georgia, serif; font-weight: 600;
@@ -130,7 +131,7 @@
   /* Bloc En ce moment */
   .moment {
     --c1: #f2b45a; --c2: #fff0c4; --fond: #3a2608;
-    position: relative; display: block; overflow: hidden; margin-top: 30px; width: 100%; max-width: 460px;
+    position: relative; display: block; overflow: hidden; margin-top: 56px; width: 100%; max-width: 460px;
     padding: 18px 20px 16px; border-radius: 20px; text-align: left; text-decoration: none; color: var(--texte);
     border: 1px solid color-mix(in srgb, var(--c1) 45%, transparent);
     background: linear-gradient(120deg, color-mix(in srgb, var(--fond) 75%, transparent), rgba(255,255,255,.03) 75%);
