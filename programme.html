@@ -60,9 +60,18 @@
   }
   h1.multi { font-family: "Point Blank", var(--affiche); text-transform: none; letter-spacing: .03em; font-size: clamp(2.8rem, 11vw, 5rem); line-height: 1.1;
     background: none; -webkit-text-fill-color: currentColor; color: inherit;
-    filter: drop-shadow(0 3px 0 rgba(0,0,0,.6)); }
-  h1.multi span[style] { background: linear-gradient(180deg, var(--c2) 0%, var(--c1) 60%, var(--c1) 100%);
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--c1); }
+    filter: none; }
+  h1.multi span[style] { display: inline-block; position: relative;
+    background: linear-gradient(180deg, var(--c2) 0%, var(--c1) 60%, var(--c1) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--c1);
+    --ombre: color-mix(in srgb, var(--c1) 45%, #000);
+    filter: drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(0 6px 10px rgba(0,0,0,.55));
+    transition: transform .25s cubic-bezier(.3,1.6,.5,1), filter .25s; cursor: default; }
+  h1.multi span[style]:hover, h1.multi span[style]:active {
+    transform: translate(-3px,-7px) scale(1.12) rotate(-3deg);
+    filter: drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(1px 1px 0 var(--ombre)) drop-shadow(0 0 18px var(--c1)) drop-shadow(0 12px 14px rgba(0,0,0,.6)); }
+  h1.multi .esp { display: inline-block; width: .28em; }
+  @media (prefers-reduced-motion: reduce) { h1.multi span[style] { transition: none; } }
   .entete p { color: var(--doux); max-width: 560px; margin: 0 auto; }
 
   /* En ce moment */
