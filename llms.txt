@@ -1,0 +1,105 @@
+# L'Escale du Soir
+
+> Radio en ligne gratuite de Suisse romande, basée dans le canton de Vaud. De la musique toute la journée (pop, rock, dance, tubes des années 70, 80, 90 et 2000) et une libre antenne du lundi au jeudi de 22h00 à 23h00, où les auditeurs parlent de ce qui coince au quotidien.
+
+- Écoute : gratuite, sans inscription, sur https://escaledusoir.ch avec le bouton « Écouter en direct ».
+- Passer à l'antenne : bouton « Passer à l'antenne » sur le site, l'auditeur laisse son prénom, son numéro et son sujet, la radio le rappelle puis lui envoie par SMS le lien pour intervenir en direct.
+- Contact : bouton « Contact » sur le site.
+- Langue : français.
+
+## Pages
+
+- [Accueil](https://escaledusoir.ch/): présentation, écoute en direct, émission en cours, questions fréquentes.
+- [Grille des programmes](https://escaledusoir.ch/programme.html): toutes les émissions jour par jour, avec horaires et descriptions.
+
+## Questions fréquentes
+
+### Comment écouter L'Escale du Soir ?
+Directement sur escaledusoir.ch, avec le bouton « Écouter en direct ». Ça marche sur ordinateur, tablette et téléphone, sans application et sans inscription.
+
+### L'écoute est-elle gratuite ?
+Oui. L'Escale du Soir s'écoute gratuitement, sans abonnement.
+
+### C'est quoi la libre antenne ?
+Du lundi au jeudi, de 22h00 à 23h00, les auditeurs prennent la parole pour parler de ce qui coince au quotidien : voisinage, travail, moral, famille. On écoute, on en parle, sans jugement.
+
+### Comment passer à l'antenne ?
+Cliquez sur « Passer à l'antenne » et laissez votre prénom, votre numéro et le sujet qui vous tient à cœur. On vous rappelle, puis on vous envoie par SMS le lien pour intervenir en direct.
+
+### Quelle musique passe sur L'Escale du Soir ?
+De la pop, du rock, de la dance et les grands tubes des années 70, 80, 90 et 2000, répartis en émissions tout au long de la journée. Le détail est dans la grille des programmes.
+
+### D'où vient la radio ?
+L'Escale du Soir est une radio en ligne de Suisse romande, basée dans le canton de Vaud. Elle s'écoute partout dans le monde.
+
+### Comment contacter la radio ?
+Avec le bouton « Contact » en haut de la page. Votre message arrive directement à l'équipe de L'Escale du Soir.
+
+## Émissions
+
+<!-- EMISSIONS:DEBUT -->
+### Morning Energy
+Le réveil en douceur, mais pas trop. Des titres solaires pour démarrer la journée du bon pied. Positive vibes, bonne humeur et zéro morceau qui traîne des pieds. Le café reste à votre charge, l'énergie, on s'en occupe.
+Horaires (heure de Suisse) : Lundi de 06:00 à 09:00, Mardi de 06:00 à 09:00, Mercredi de 06:00 à 09:00, Jeudi de 06:00 à 09:00, Vendredi de 06:00 à 09:00, Samedi de 06:00 à 10:00, Dimanche de 06:00 à 10:00.
+
+### Best Pop
+Les tubes qu'on fredonne sans le vouloir. Le meilleur de la pop actuelle, en continu. Des refrains qui restent en tête toute la matinée et des titres qui donnent envie de monter le son au bureau. Discrètement, bien sûr.
+Horaires (heure de Suisse) : Lundi de 09:00 à 12:00, Mardi de 09:00 à 12:00, Mercredi de 09:00 à 12:00, Jeudi de 09:00 à 12:00, Vendredi de 09:00 à 12:00, Samedi de 10:00 à 13:00.
+
+### Pop Mix
+La pause de midi, version playlist. Un mélange pop léger pour accompagner le repas, la promenade ou la petite sieste discrète. Du rythme sans prise de tête, des voix qu'on connaît et quelques surprises.
+Horaires (heure de Suisse) : Lundi de 12:00 à 14:00, Mardi de 12:00 à 14:00, Mercredi de 12:00 à 14:00, Jeudi de 12:00 à 14:00, Vendredi de 12:00 à 14:00, Samedi de 19:00 à 22:00.
+
+### 2000s Pop
+Retour au temps des téléphones à clapet. Les tubes pop des années 2000, ceux qu'on chantait à tue-tête avant les réseaux sociaux. Nostalgie garantie, téléphone à clapet non fourni.
+Horaires (heure de Suisse) : Lundi de 14:00 à 16:00, Mardi de 14:00 à 16:00, Mercredi de 14:00 à 16:00, Jeudi de 14:00 à 16:00, Vendredi de 14:00 à 16:00, Samedi de 13:00 à 16:00.
+L'époque de : Britney Spears, Beyoncé, Justin Timberlake, Shakira, Robbie Williams.
+
+### Dance Mix
+Beach vibes, même quand il pleut. Des rythmes dance et électro aux airs de plage pour finir la journée en douceur. Fermez les yeux, vous êtes presque en vacances.
+Horaires (heure de Suisse) : Lundi de 16:00 à 18:00, Mardi de 16:00 à 18:00, Mercredi de 16:00 à 18:00, Jeudi de 16:00 à 18:00, Vendredi de 16:00 à 18:00, Samedi de 22:00 à 00:00.
+
+### Rock Classics
+Les monuments du rock, sans la poussière. Les grands classiques du rock, ceux qui ont tout inventé. Guitares saturées, refrains mythiques et solos qui donnent envie de jouer de la guitare imaginaire dans le salon.
+Horaires (heure de Suisse) : Lundi de 18:00 à 20:00, Jeudi de 18:00 à 20:00, Dimanche de 13:00 à 16:00.
+L'époque de : The Rolling Stones, Queen, Led Zeppelin, AC/DC, Pink Floyd.
+
+### Rock 90's
+Chemise à carreaux recommandée. Le rock des années 90, du grunge aux grands hymnes de stade. Montez le volume, les voisins comprendront. Ou pas.
+Horaires (heure de Suisse) : Mardi de 18:00 à 20:00, Vendredi de 18:00 à 20:00.
+L'époque de : Nirvana, Pearl Jam, Red Hot Chili Peppers, Oasis, Foo Fighters.
+
+### Rock 2000's
+Le rock qui a fait vibrer les années 2000. Riffs efficaces, refrains taillés pour les festivals et énergie à revendre. Le rock des années 2000, celui qu'on écoutait en boucle dans la voiture.
+Horaires (heure de Suisse) : Mercredi de 18:00 à 20:00, Samedi de 16:00 à 19:00.
+L'époque de : Linkin Park, The White Stripes, Muse, The Killers, Green Day.
+
+### 70s 80s Radio
+Paillettes, synthés et brushings audacieux. Les tubes pop des années 70 et 80, du disco aux synthés. Des chansons que tout le monde connaît, même ceux qui n'étaient pas nés.
+Horaires (heure de Suisse) : Lundi de 20:00 à 22:00, Vendredi de 20:00 à 22:00, Dimanche de 10:00 à 13:00.
+L'époque de : ABBA, Michael Jackson, Madonna, Bee Gees, Cyndi Lauper.
+
+### 90's Radio
+La décennie qui ne vieillit pas. Les hits pop des années 90, ceux des boums, des cassettes et des premières radios libres. De la bonne humeur, sans modération.
+Horaires (heure de Suisse) : Mardi de 20:00 à 22:00, Dimanche de 16:00 à 19:00.
+L'époque de : Spice Girls, Backstreet Boys, Céline Dion, Whitney Houston, Ace of Base.
+
+### 2000's Radio
+Les années 2000 en version best of. Les grands tubes pop des années 2000, à écouter fort. Idéal pour la soirée, quand il reste encore un peu d'énergie à dépenser.
+Horaires (heure de Suisse) : Mercredi de 20:00 à 22:00, Dimanche de 19:00 à 22:00.
+L'époque de : Rihanna, Black Eyed Peas, Lady Gaga, Coldplay, Kylie Minogue.
+
+### 1990s Mix
+Un grand mix des années 90. Eurodance, pop, R&B et grands classiques des années 90 dans un mix sans temps mort. Pour finir la soirée en beauté.
+Horaires (heure de Suisse) : Jeudi de 20:00 à 22:00, Vendredi de 22:00 à 00:00, Dimanche de 22:00 à 00:00.
+L'époque de : Dr. Alban, 2 Unlimited, Haddaway, Mylène Farmer, TLC.
+
+### Radio 70's 80's Mix
+Les nuits rétro de L'Escale. Toute la nuit, les plus belles chansons des années 70 et 80 tournent pour les insomniaques, les travailleurs de nuit et les rêveurs. Le phare reste allumé.
+Horaires (heure de Suisse) : Lundi de 00:00 à 06:00, Lundi de 23:00 à 00:00, Mardi de 00:00 à 06:00, Mardi de 23:00 à 00:00, Mercredi de 00:00 à 06:00, Mercredi de 23:00 à 00:00, Jeudi de 00:00 à 06:00, Jeudi de 23:00 à 00:00, Vendredi de 00:00 à 06:00, Samedi de 00:00 à 06:00, Dimanche de 00:00 à 06:00.
+L'époque de : Elton John, Daniel Balavoine, Tina Turner, Earth, Wind & Fire, Indochine.
+
+### La libre antenne
+Programme à définir. Les lignes ouvrent bientôt. Vous appelez, on écoute, on en parle. Le voisin bruyant, le chef impossible, le moral en berne. La libre antenne de L'Escale du Soir arrive du lundi au jeudi, de 22h00 à 23h00. Le programme exact sera bientôt dévoilé. Restez à l'écoute.
+Horaires (heure de Suisse) : Lundi de 22:00 à 23:00, Mardi de 22:00 à 23:00, Mercredi de 22:00 à 23:00, Jeudi de 22:00 à 23:00.
+<!-- EMISSIONS:FIN -->
