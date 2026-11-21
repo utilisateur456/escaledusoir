@@ -457,7 +457,10 @@
         <div><label for="a-nom">Prénom</label><input id="a-nom" name="prenom" required autocomplete="given-name"></div>
         <div><label for="a-tel">Téléphone</label><input id="a-tel" name="telephone" type="tel" required autocomplete="tel" inputmode="tel"></div>
       </div>
-      <div><label for="a-mail">E-mail (facultatif)</label><input id="a-mail" name="email" type="email" autocomplete="email"></div>
+      <div class="ligne">
+        <div><label for="a-mail">E-mail</label><input id="a-mail" name="email" type="email" required autocomplete="email"></div>
+        <div><label for="a-naissance">Date de naissance</label><input id="a-naissance" name="naissance" type="date" required min="1900-01-01" autocomplete="bday"></div>
+      </div>
       <div><label for="a-sujet">De quoi voulez-vous parler ?</label><textarea id="a-sujet" name="sujet" required placeholder="En quelques mots, le sujet qui vous tient à cœur."></textarea></div>
       <label class="accord"><input type="checkbox" name="accord" required> J'accepte d'être rappelé et que ma voix soit diffusée en direct sur Radio Escale.</label>
       <p class="discret">Votre numéro reste entre nous. Il sert uniquement à vous rappeler.</p>
@@ -621,6 +624,12 @@
       document.getElementById("a-tel").focus();
       return;
     }
+    const naiss = new Date(d.naissance + "T12:00:00");
+    if (!d.naissance || isNaN(naiss) || naiss > new Date()) {
+      retour.textContent = "Vérifiez votre date de naissance.";
+      document.getElementById("a-naissance").focus();
+      return;
+    }
     btn.disabled = true; btn.textContent = "Envoi...";
     try {
       const r = await fetch("https://api.web3forms.com/submit", {
@@ -630,10 +639,11 @@
           access_key: WEB3FORMS_KEY,
           subject: "Demande de passage à l'antenne - " + d.prenom,
           from_name: "Site Radio Escale",
-          replyto: d.email || undefined,
+          replyto: d.email,
           "Prénom": d.prenom,
           "Téléphone à rappeler": d.telephone,
-          "E-mail": d.email || "-",
+          "E-mail": d.email,
+          "Date de naissance": naiss.toLocaleDateString("fr-CH", { day: "2-digit", month: "2-digit", year: "numeric" }),
           "Sujet": d.sujet,
           "Accord pour passer en direct": "Oui",
           "Reçu le": new Date().toLocaleString("fr-CH", { timeZone: "Europe/Zurich" })
