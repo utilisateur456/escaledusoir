@@ -284,7 +284,16 @@
     padding: 58px 16px 16px; box-shadow: 0 40px 100px rgba(0,0,0,.6);
   }
   .radio-pop .titre-pop { position: absolute; top: 24px; left: 22px; font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--phare); }
-  .radio-pop .cstrEmbed { border-radius: 14px; overflow: hidden; }
+  .radio-pop .titre-pop { display: inline-flex; align-items: center; gap: 8px; }
+  .radio-pop .pop-tete { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .radio-pop .pop-logo { width: 88px; height: 88px; flex-shrink: 0; border-radius: 16px; object-fit: cover; border: 1px solid rgba(242,180,90,.35); box-shadow: 0 10px 26px -12px rgba(242,180,90,.55); }
+  .radio-pop .pop-nom { font-family: "Point Blank", "Cinzel", Georgia, serif; font-size: 1.95rem; line-height: 1.05; color: var(--phare); letter-spacing: .02em; }
+  .radio-pop .pop-slogan { color: var(--doux); font-size: .95rem; margin-top: 2px; }
+  .radio-pop .pop-emission { margin-top: 8px; font-size: .85rem; color: #fff3d1; }
+  .radio-pop .pop-emission:empty { display: none; }
+  /* On ne garde que la barre du bas du lecteur Caster.fm (Play, volume, logo) */
+  .radio-pop .lecteur-coupe { position: relative; height: 54px; overflow: hidden; border-radius: 14px; }
+  .radio-pop .lecteur-coupe .cstrEmbed { position: absolute; left: 0; right: 0; bottom: 0; }
   body.radio-ouverte .radio-voile, body.radio-ouverte .radio-pop { opacity: 1; pointer-events: auto; }
   body.radio-ouverte .radio-pop { transform: translate(-50%, -50%); }
   /* Grille ouverte par-dessus l'accueil pendant l'écoute : la radio ne se coupe pas */
@@ -484,11 +493,21 @@
 
 <div class="radio-voile" id="radio-voile"></div>
 <div class="radio-pop" id="radio-pop" role="dialog" aria-label="Écouter Radio Escale">
-  <span class="titre-pop">En direct</span>
+  <span class="titre-pop"><span class="rec" aria-hidden="true"></span>En direct</span>
   <button class="fermer" id="fermer-radio" type="button" aria-label="Fermer">&times;</button>
-  <div data-type="newStreamPlayer" data-publicToken="2859a804-483b-4b11-871f-5a02c5b6ea99" data-theme="dark" data-color="f2b45a" data-channelId="" data-rendered="false" class="cstrEmbed">
+  <div class="pop-tete">
+    <img class="pop-logo" src="images/logo.jpg" alt="" width="512" height="512">
+    <div>
+      <div class="pop-nom">Radio Escale</div>
+      <div class="pop-slogan">Ça remonte le moral.</div>
+      <div class="pop-emission" id="pop-emission"></div>
+    </div>
+  </div>
+  <div class="lecteur-coupe">
+    <div data-type="newStreamPlayer" data-publicToken="2859a804-483b-4b11-871f-5a02c5b6ea99" data-theme="dark" data-color="f2b45a" data-channelId="" data-rendered="false" class="cstrEmbed">
         <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
       </div>
+  </div>
 </div>
 
 <footer>
@@ -587,7 +606,12 @@
 
   // Fenêtre radio : elle reste chargée, le son continue quand on la ferme
   let radioLancee = false;
-  const ouvrirRadio = () => { radioLancee = true; document.body.classList.add("radio-ouverte"); };
+  const ouvrirRadio = () => {
+    radioLancee = true;
+    const t = document.getElementById("m-titre");
+    document.getElementById("pop-emission").textContent = t && t.textContent ? "En ce moment : " + t.textContent : "";
+    document.body.classList.add("radio-ouverte");
+  };
   const fermerRadio = () => document.body.classList.remove("radio-ouverte");
   document.getElementById("ecouter").addEventListener("click", ouvrirRadio);
   document.getElementById("fermer-radio").addEventListener("click", fermerRadio);
