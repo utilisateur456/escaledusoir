@@ -103,6 +103,11 @@
   .titre-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .logo-anim { position: relative; }
   .logo-anim video { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  /* Safari (Mac, iPhone) : masque le bouton Play natif quand la lecture auto est bloquée */
+  .logo-anim video::-webkit-media-controls,
+  .logo-anim video::-webkit-media-controls-panel,
+  .logo-anim video::-webkit-media-controls-start-playback-button,
+  .logo-anim video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; opacity: 0 !important; }
   /* Faisceau du phare qui tourne (superposé à la vidéo) */
   .faisceau {
     position: absolute; left: 48.4%; top: 47.3%; width: 230%; aspect-ratio: 1;
@@ -566,6 +571,19 @@
   document.getElementById("appeler").addEventListener("click", () => dlgAppel.showModal());
   document.getElementById("fermer-appel").addEventListener("click", () => dlgAppel.close());
   dlgAppel.addEventListener("click", (e) => { if (e.target === dlgAppel) dlgAppel.close(); });
+
+  // Vidéo du phare : relance la lecture si Safari l'a bloquée (économie d'énergie, réglage du navigateur)
+  (function () {
+    const v = document.querySelector(".logo-anim video");
+    if (!v) return;
+    v.muted = true; v.defaultMuted = true; v.controls = false;
+    const lancer = () => { if (v.paused) v.play().catch(() => {}); };
+    lancer();
+    v.addEventListener("canplay", lancer, { once: true });
+    ["pointerdown", "touchstart", "scroll", "keydown"].forEach(evt =>
+      window.addEventListener(evt, lancer, { once: true, passive: true }));
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) lancer(); });
+  })();
 
   // Fenêtre radio : elle reste chargée, le son continue quand on la ferme
   let radioLancee = false;
