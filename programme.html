@@ -736,7 +736,16 @@
 <script>
 /* Grille ouverte par-dessus l'accueil pendant l'écoute : les liens vers l'accueil ferment la grille sans recharger la page */
 (function () {
-  if (!new URLSearchParams(location.search).has("integre") || window.parent === window) return;
+  if (!new URLSearchParams(location.search).has("integre") || window.parent === window) {
+    /* Page grille seule : "Écouter en direct" ouvre le lecteur sans quitter la grille */
+    document.querySelectorAll('a[href="index.html#ecouter"]').forEach(a => a.addEventListener("click", (ev) => {
+      if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button > 0) return;
+      ev.preventDefault();
+      const q = new URLSearchParams(location.search); q.delete("integre");
+      location.href = "index.html?grille=" + encodeURIComponent(q.toString()) + "#ecouter";
+    }));
+    return;
+  }
   const marque = document.querySelector(".barre .marque");
   if (marque) marque.textContent = "\u2190 Radio Escale";
   document.addEventListener("click", (ev) => {
