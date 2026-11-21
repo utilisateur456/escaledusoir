@@ -733,5 +733,20 @@
 </script>
 <script src="chat.js"></script>
 <script src="haut.js"></script>
+<script>
+/* Grille ouverte par-dessus l'accueil pendant l'écoute : les liens vers l'accueil ferment la grille sans recharger la page */
+(function () {
+  if (!new URLSearchParams(location.search).has("integre") || window.parent === window) return;
+  const marque = document.querySelector(".barre .marque");
+  if (marque) marque.textContent = "\u2190 Radio Escale";
+  document.addEventListener("click", (ev) => {
+    const a = ev.target.closest('a[href^="index.html"]');
+    if (!a) return;
+    ev.preventDefault();
+    window.parent.postMessage(a.getAttribute("href").includes("#ecouter") ? "ecouter" : "fermer-grille", "*");
+  });
+  document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !document.body.classList.contains("fiche-ouverte")) window.parent.postMessage("fermer-grille", "*"); }, true);
+})();
+</script>
 </body>
 </html>

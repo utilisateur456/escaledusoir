@@ -282,6 +282,11 @@
   .radio-pop .cstrEmbed { border-radius: 14px; overflow: hidden; }
   body.radio-ouverte .radio-voile, body.radio-ouverte .radio-pop { opacity: 1; pointer-events: auto; }
   body.radio-ouverte .radio-pop { transform: translate(-50%, -50%); }
+  /* Grille ouverte par-dessus l'accueil pendant l'écoute : la radio ne se coupe pas */
+  .grille-cadre { position: fixed; inset: 0; z-index: 1000; background: #0b1020; }
+  .grille-cadre[hidden] { display: none; }
+  .grille-cadre iframe { display: block; width: 100%; height: 100%; border: 0; }
+  body.grille-ouverte { overflow: hidden; }
   dialog.contact {
     width: min(560px, 92vw); max-height: 90vh; margin: auto;
     border: 1px solid rgba(242,180,90,.35); border-radius: 24px;
@@ -470,6 +475,8 @@
   </dialog>
 </div>
 
+<div class="grille-cadre" id="grille-cadre" hidden><iframe id="grille-iframe" title="Grille des programmes" src="about:blank"></iframe></div>
+
 <div class="radio-voile" id="radio-voile"></div>
 <div class="radio-pop" id="radio-pop" role="dialog" aria-label="Écouter Radio Escale">
   <span class="titre-pop">En direct</span>
@@ -561,13 +568,45 @@
   dlgAppel.addEventListener("click", (e) => { if (e.target === dlgAppel) dlgAppel.close(); });
 
   // Fenêtre radio : elle reste chargée, le son continue quand on la ferme
-  const ouvrirRadio = () => document.body.classList.add("radio-ouverte");
+  let radioLancee = false;
+  const ouvrirRadio = () => { radioLancee = true; document.body.classList.add("radio-ouverte"); };
   const fermerRadio = () => document.body.classList.remove("radio-ouverte");
   document.getElementById("ecouter").addEventListener("click", ouvrirRadio);
   document.getElementById("fermer-radio").addEventListener("click", fermerRadio);
   document.getElementById("radio-voile").addEventListener("click", fermerRadio);
   document.addEventListener("keydown", e => { if (e.key === "Escape") fermerRadio(); });
   if (location.hash === "#ecouter") ouvrirRadio();
+
+  // Pendant l'écoute, la grille s'ouvre par-dessus la page pour ne pas couper le son
+  const cadreGrille = document.getElementById("grille-cadre");
+  const iframeGrille = document.getElementById("grille-iframe");
+  function ouvrirGrille(href) {
+    const url = new URL(href || "programme.html", location.href);
+    url.searchParams.set("integre", "1");
+    iframeGrille.src = url.pathname.split("/").pop() + url.search;
+    cadreGrille.hidden = false;
+    document.body.classList.add("grille-ouverte");
+    fermerRadio();
+  }
+  function fermerGrille() {
+    cadreGrille.hidden = true;
+    document.body.classList.remove("grille-ouverte");
+    iframeGrille.src = "about:blank";
+  }
+  window.radioEstLancee = () => radioLancee;
+  window.ouvrirGrille = ouvrirGrille;
+  document.addEventListener("click", (ev) => {
+    const a = ev.target.closest('a[href^="programme.html"]');
+    if (!a || !radioLancee || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button > 0) return;
+    ev.preventDefault();
+    ouvrirGrille(a.getAttribute("href"));
+  });
+  window.addEventListener("message", (ev) => {
+    if (ev.source !== iframeGrille.contentWindow) return;
+    if (ev.data === "fermer-grille") fermerGrille();
+    if (ev.data === "ecouter") { fermerGrille(); ouvrirRadio(); }
+  });
+  document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !cadreGrille.hidden) fermerGrille(); });
 
   // Fenêtre de contact
   const dlg = document.getElementById("contact");

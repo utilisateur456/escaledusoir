@@ -74,7 +74,7 @@
   /* ---------- Actions ---------- */
   const ACTIONS = {
     ecouter: ["Écouter maintenant", () => surAccueil ? document.body.classList.add("radio-ouverte") : location.href = "index.html#ecouter"],
-    grille: ["Voir la grille", () => location.href = "programme.html"],
+    grille: ["Voir la grille", () => (window.radioEstLancee && window.radioEstLancee()) ? window.ouvrirGrille("programme.html") : (location.href = "programme.html")],
     appel: ["Passer à l'antenne", () => surAccueil ? document.getElementById("appel").showModal() : location.href = "index.html#appel"],
     contact: ["Nous écrire", () => surAccueil ? document.getElementById("contact").showModal() : location.href = "index.html#contact"]
   };
