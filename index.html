@@ -319,6 +319,19 @@
     font-size: 1.4rem; line-height: 1; cursor: pointer;
   }
   .fermer:hover { color: var(--phare); border-color: var(--phare); }
+  /* Smartphone : fenêtres plus compactes, croix toujours visible même en faisant défiler */
+  @media (max-width: 600px) {
+    dialog.contact { width: 94vw; max-height: 92vh; max-height: 92dvh; overflow-y: auto; padding: 14px 16px 18px; border-radius: 20px; }
+    dialog.contact h2 { font-size: 1.45rem; margin: 4px 0 6px; }
+    dialog.contact .intro { font-size: .9rem; line-height: 1.4; }
+    dialog.contact form { margin-top: 12px; gap: 10px; }
+    dialog.contact .ligne { grid-template-columns: 1fr 1fr; gap: 10px; }
+    dialog.contact label { font-size: .7rem; margin-bottom: 4px; }
+    dialog.contact input, dialog.contact textarea { padding: 10px 12px; font-size: 16px; border-radius: 12px; }
+    dialog.contact textarea { min-height: 80px; }
+    dialog.contact label.accord { font-size: .85rem; }
+    dialog.contact .fermer { position: sticky; top: 0; float: right; z-index: 5; margin: 0 0 0 8px; background: #151d33; }
+  }
 
   footer { border-top: 1px solid var(--bord); padding: 30px 0 40px; text-align: center; color: var(--doux); font-size: .85rem; }
   footer a { color: var(--phare); text-decoration: none; }
