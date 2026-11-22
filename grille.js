@@ -16,6 +16,7 @@ const PICTOS = {
   baladeur: '<svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><rect x="8.5" y="4.5" width="7" height="6" rx="1"/><circle cx="12" cy="16" r="3"/></svg>',
   vinyle: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 6a6 6 0 0 1 6 6M6 12a6 6 0 0 0 6 6"/></svg>',
   lune: '<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/><path d="M17 3v3M15.5 4.5h3"/></svg>',
+  oeil: '<svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   micro: '<svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg>'
 };
 
@@ -34,6 +35,7 @@ const EMISSIONS = {
   radio2000:   { titre: "2000's Radio",        picto: "baladeur", c1: "#2ee6a6", c2: "#c4ffe9", fond: "#083a2a", slogan: "Les années 2000 en version best of.", texte: "Les grands tubes pop des années 2000, à écouter fort. Idéal pour la soirée, quand il reste encore un peu d'énergie à dépenser.", genres: ["Pop", "Années 2000"], artistes: ["Rihanna", "Black Eyed Peas", "Lady Gaga", "Coldplay", "Kylie Minogue"] },
   mix1990:     { titre: "1990s Mix",           picto: "vinyle",   c1: "#c8f031", c2: "#efffc0", fond: "#34420a", slogan: "Un grand mix des années 90.", texte: "Eurodance, pop, R&B et grands classiques des années 90 dans un mix sans temps mort. Pour finir la soirée en beauté.", genres: ["Eurodance", "Pop", "Années 90"], artistes: ["Dr. Alban", "2 Unlimited", "Haddaway", "Mylène Farmer", "TLC"] },
   mix7080:     { titre: "Radio 70's 80's Mix", picto: "lune",     c1: "#e14eea", c2: "#f7cdfa", fond: "#40104a", slogan: "Les nuits rétro de Radio Escale.", texte: "Toute la nuit, les plus belles chansons des années 70 et 80 tournent pour les insomniaques, les travailleurs de nuit et les rêveurs. Le phare reste allumé.", genres: ["Années 70 et 80", "Nuit"], artistes: ["Elton John", "Daniel Balavoine", "Tina Turner", "Earth, Wind & Fire", "Indochine"] },
+  monvoyant:   { titre: "Monvoyant Live",      picto: "oeil",     c1: "#b58cff", c2: "#eadcff", fond: "#25134f", slogan: "L'émission ésotérique du dimanche, en direct.", texte: "Chaque dimanche à 19h00, Monvoyant Live vous retrouve en direct pour une émission ésotérique. Restez à l'écoute.", genres: ["Ésotérisme", "En direct"] },
   libre:       { titre: "L'Escale du Soir",    picto: "micro",    c1: "#f2b45a", c2: "#fff0c4", fond: "#3a2608", slogan: "De la musique toute la journée. Et le soir, on décroche le téléphone.", texte: "Vous appelez, on écoute, on en parle. Le voisin bruyant, le chef impossible, le moral en berne. L'Escale du Soir, la libre antenne de Radio Escale, arrive du lundi au jeudi, de 22h00 à 23h00. Le programme exact sera bientôt dévoilé. Restez à l'écoute.", genres: ["Libre antenne", "Appels des auditeurs"], libre: true }
 };
 
@@ -53,7 +55,7 @@ const GRILLE = {
   6: [["00:00","06:00","mix7080"], ["06:00","10:00","morning"], ["10:00","13:00","bestpop"], ["13:00","16:00","pop2000s"],
       ["16:00","19:00","rock2000"], ["19:00","22:00","popmix"], ["22:00","24:00","dance"]],
   0: [["00:00","06:00","mix7080"], ["06:00","10:00","morning"], ["10:00","13:00","radio7080"], ["13:00","16:00","rockclassics"],
-      ["16:00","19:00","radio90"], ["19:00","22:00","radio2000"], ["22:00","24:00","mix1990"]]
+      ["16:00","19:00","radio90"], ["19:00","20:00","monvoyant"], ["20:00","22:00","radio2000"], ["22:00","24:00","mix1990"]]
 };
 const JOURS = [[1,"Lundi"],[2,"Mardi"],[3,"Mercredi"],[4,"Jeudi"],[5,"Vendredi"],[6,"Samedi"],[0,"Dimanche"]];
 const NOMS = Object.fromEntries(JOURS);
