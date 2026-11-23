@@ -93,10 +93,10 @@
   h1.multi .esp { display: inline-block; width: .28em; }
   @media (prefers-reduced-motion: reduce) { h1.multi span.l { transition: none; } }
   .logo-anim {
-    width: min(560px, 94vw); aspect-ratio: 1 / .82; overflow: hidden; margin-bottom: 4px;
-    -webkit-mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
+    width: min(500px, 88vw); aspect-ratio: 1 / 1; overflow: hidden; margin-bottom: 0;
+    -webkit-mask: linear-gradient(to right, transparent, #000 17%, #000 83%, transparent), linear-gradient(to bottom, transparent, #000 8%, #000 94%, transparent);
     -webkit-mask-composite: source-in;
-            mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
+            mask: linear-gradient(to right, transparent, #000 17%, #000 83%, transparent), linear-gradient(to bottom, transparent, #000 8%, #000 94%, transparent);
             mask-composite: intersect;
   }
   .sous-titre { margin: 0 0 4px; letter-spacing: .5em; text-transform: uppercase; font-size: .8rem; color: var(--phare); padding-left: .5em; }
