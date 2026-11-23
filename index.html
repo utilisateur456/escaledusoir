@@ -93,7 +93,7 @@
   h1.multi .esp { display: inline-block; width: .28em; }
   @media (prefers-reduced-motion: reduce) { h1.multi span.l { transition: none; } }
   .logo-anim {
-    width: min(560px, 94vw); aspect-ratio: 1 / .66; overflow: hidden; margin-bottom: 4px;
+    width: min(560px, 94vw); aspect-ratio: 1 / .82; overflow: hidden; margin-bottom: 4px;
     -webkit-mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
     -webkit-mask-composite: source-in;
             mask: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%), linear-gradient(to bottom, #000 78%, transparent 100%);
@@ -109,31 +109,6 @@
   .logo-anim video::-webkit-media-controls-start-playback-button,
   .logo-anim video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; opacity: 0 !important; }
   /* Faisceau du phare qui tourne (superposé à la vidéo) */
-  .faisceau {
-    position: absolute; left: 48.4%; top: 47.3%; width: 230%; aspect-ratio: 1;
-    transform: translate(-50%, -50%) scaleY(.30); pointer-events: none;
-    -webkit-mask: radial-gradient(circle, #000 0 8%, rgba(0,0,0,.85) 22%, transparent 48%);
-            mask: radial-gradient(circle, #000 0 8%, rgba(0,0,0,.85) 22%, transparent 48%);
-  }
-  .faisceau::before {
-    content: ""; position: absolute; inset: 0; border-radius: 50%;
-    background: conic-gradient(from 0deg,
-      rgba(255,222,150,.0) 0deg, rgba(255,222,150,.75) 8deg, rgba(255,222,150,.0) 22deg,
-      transparent 180deg,
-      rgba(255,222,150,.0) 180deg, rgba(255,222,150,.55) 188deg, rgba(255,222,150,.0) 202deg,
-      transparent 360deg);
-    filter: blur(5px); mix-blend-mode: screen;
-    animation: tourne 6s linear infinite;
-  }
-  .lanterne {
-    position: absolute; left: 48.4%; top: 47.3%; width: 9%; aspect-ratio: 1; border-radius: 50%;
-    transform: translate(-50%, -50%); pointer-events: none; mix-blend-mode: screen;
-    background: radial-gradient(circle, rgba(255,240,200,.95) 0 18%, rgba(255,200,110,.45) 40%, transparent 70%);
-    animation: pulse 3s ease-in-out infinite;
-  }
-  @keyframes tourne { to { transform: rotate(360deg); } }
-  @keyframes pulse { 50% { opacity: .55; } }
-  @media (prefers-reduced-motion: reduce) { .faisceau::before, .lanterne { animation: none; } }
   .accroche { margin-top: 0; font-size: clamp(.95rem, 2.1vw, 1.3rem); color: var(--doux); white-space: nowrap; }
   @media (max-width: 640px) { .accroche { white-space: normal; max-width: 340px; } }
 
@@ -402,11 +377,9 @@
 <div class="wrap">
   <header>
     <div class="logo-anim">
-      <video autoplay muted loop playsinline preload="auto" poster="https://cms-toolkit-artifacts.artlist.io/content/-t-e-x-t_-t-o_-i-m-a-g-e-v1/media__2/image-17f46c42-6c47-496f-8d0a-587e977aa1e6.png?Expires=2110448532&amp;Key-Pair-Id=K2ZDLYDZI2R1DF&amp;Signature=uNTfkm-Ohr9Tj1moTwreS-hcrq4m7PDEi2OF-3w8b3Mpe1twMnNuvNemvWlUjwtqPUQfo6IUdhlWPZOSxu~XLsAm6EQxzy57KPM9yUjONJ1VDYpQKmpC1-JQoso9qCB~Jvz6RxqXYDnGEXm3HikEhmIz1cGPp7KMI3EtoY3PecCC5hcR9~~raG0o-47lhpDgbJvghCcunGhJe9bKjwXENXUtvCfoY~yw12V91ztQaOEcwzjY9rsXE7uwrXRg4mBqjuUgtoK1mZ6uleJlueC4DBzmi8A2CUxloDAZTMRS7YOJL3XsnLO-P4m5IQxY9UnqTYKxBggLkVB1FB~Ulg4tBA__" aria-label="Logo animé de Radio Escale">
-        <source src="https://cms-toolkit-artifacts.artlist.io/content/-e-x-t-e-r-n-a-l_-i-m-a-g-e_-t-o_-v-i-d-e-o-v1/media__1/-e-x-t-e-r-n-a-l_-i-m-a-g-e_-t-o_-v-i-d-e-o-0a6a488f-e92f-43ea-a2b2-8f1382f4f53e.mp4?Expires=2110450500&amp;Key-Pair-Id=K2ZDLYDZI2R1DF&amp;Signature=2CxEl0LF1epBzRmkF7LAzTms5bQ1KETZ6C8pAO9i55lbngRYudyT~0MtMnzYtr2A6bxbtHsQ8Du7ZkDgZTFxk86oZBxIzryvdDu~ikHS8yi7B7-~3lFDk~8BB8WAM-ZraL2TWc~dBpXXLrfAYeaRvJgRwKnr9r6hqkxVGq9A97roX65sZEWSRlFYqB9dSj1DmDOd9KiFjaM-O~vOodapajbebgeeGQ6K493rcTNpez1qCJKV~InryPiDSOFNRnvK8WKugCoL2CmLpRvoi177fB0dagCKAY6fKkJPk6kRAoOWfB-XhpbsRBMqHSMuefA15uxluWwojfpk4I1D0qD-WA__" type="video/mp4">
+      <video autoplay muted loop playsinline preload="auto" poster="images/phare-poster.jpg" aria-label="Logo animé de Radio Escale">
+        <source src="images/phare.mp4" type="video/mp4">
       </video>
-      <div class="faisceau" aria-hidden="true"></div>
-      <div class="lanterne" aria-hidden="true"></div>
     </div>
     <h1 class="multi" aria-label="Radio Escale"><span aria-hidden="true"><span class="l">R</span><span class="l">a</span><span class="l">d</span><span class="l">i</span><span class="l">o</span><span class="esp"> </span><span class="l">E</span><span class="l">s</span><span class="l">c</span><span class="l">a</span><span class="l">l</span><span class="l">e</span></span></h1>
     <p class="accroche">Ça remonte le moral.</p>
